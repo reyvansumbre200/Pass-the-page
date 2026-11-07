@@ -72,7 +72,7 @@
     .item { grid-template-columns: 48px 1fr; }
     .thumb { width: 48px; height: 64px; }
     .item .ctl { grid-column: 1 / -1; flex-wrap: wrap; }
-    .item .ctl select { flex: 1; }
+    .item .ctl select { flex: 1; min-width: 110px; }
   }
 </style>
 </head>
@@ -131,6 +131,8 @@
     <form id="fSite" class="grid2" style="margin-top:16px">
       <div><label>Your name</label><input name="owner"></div>
       <div><label>WhatsApp number (with 91, digits only)</label><input name="whatsapp" inputmode="numeric"></div>
+      <div><label>Phone number (shown on site)</label><input name="phone" inputmode="numeric"></div>
+      <div><label>Instagram link</label><input name="instagram" type="url" placeholder="https://www.instagram.com/…"></div>
       <div><label>NGO name</label><input name="ngoName"></div>
       <div><label>NGO website (optional)</label><input name="ngoLink" type="url" placeholder="https://"></div>
       <div class="full"><label>About the NGO</label><textarea name="ngoAbout"></textarea></div>
@@ -160,7 +162,8 @@
       <div><label>Edition</label><select name="edition"><option value="original">Original</option><option value="first-copy">First copy</option></select></div>
       <div><label>Condition</label><select name="condition"><option value="good">Good</option><option value="fair">Fair</option><option value="worn">Worn</option><option value="worse">Worse</option></select></div>
       <div><label>Status</label><select name="status"><option value="available">Available</option><option value="reserved">Reserved</option><option value="sold">Sold</option></select></div>
-      <div><label>Sold for ₹ (counts toward the total raised)</label><input name="soldFor" type="number" min="0"></div>
+      <div><label>MRP ₹ (price printed on the book)</label><input name="mrp" type="number" min="0" inputmode="numeric"></div>
+      <div><label>Sold for ₹ (counts toward the total raised)</label><input name="soldFor" type="number" min="0" inputmode="numeric"></div>
       <div class="full"><label>Your note (what's it like, any marks or damage)</label><textarea name="note"></textarea></div>
       <div class="full"><label class="check"><input type="checkbox" name="blind"> 🎁 Blind date: hide the title and photos, show only a clue</label></div>
       <div class="full" id="hintRow"><label>Clue shown on the wrapping</label><input name="hint" placeholder="Ten strangers. One island. Nobody leaves."></div>
@@ -289,7 +292,7 @@ function openEditor(book) {
   editing = book || { id: slug(""), edition: "original", condition: "good", status: "available", photos: [] };
   $("dlgTitle").textContent = book ? "Edit book" : "Add a book";
   $("del").classList.toggle("hidden", !book);
-  for (const k of ["title", "author", "genre", "edition", "condition", "status", "soldFor", "note", "hint"]) F[k].value = editing[k] ?? "";
+  for (const k of ["title", "author", "genre", "edition", "condition", "status", "mrp", "soldFor", "note", "hint"]) F[k].value = editing[k] ?? "";
   F.blind.checked = !!editing.blind;
   $("hintRow").classList.toggle("hidden", !F.blind.checked);
   $("genres").innerHTML = [...new Set(data.books.map(b => b.genre).filter(Boolean))].map(g => `<option value="${esc(g)}">`).join("");
@@ -304,6 +307,7 @@ $("fBook").onsubmit = e => {
   if (isNew && !draftPhotos.length) b.id = slug(F.title.value);
   for (const k of ["title", "author", "genre", "edition", "condition", "status", "note", "hint"]) b[k] = F[k].value.trim();
   b.soldFor = F.soldFor.value ? +F.soldFor.value : undefined;
+  b.mrp = F.mrp.value ? +F.mrp.value : undefined;
   b.blind = F.blind.checked || undefined;
   if (!b.hint) delete b.hint;
   b.photos = draftPhotos;
@@ -311,11 +315,13 @@ $("fBook").onsubmit = e => {
   if (b.status === "sold" && !b.soldFor) toast("Tip: add the 'Sold for' amount so it counts toward the total raised");
   setDirty(); renderList();
 };
-$("del").onclick = () => {
-  if (!confirm(`Delete "${editing.title}"? This can't be undone after you publish.`)) return;
-  data.books = data.books.filter(b => b !== editing);
-  $("dlg").close(); setDirty(); renderList();
-};
+function remove(book) {
+  if (!confirm(`Delete "${book.title}"?\n\nIt disappears from the site after you tap Publish.`)) return false;
+  data.books = data.books.filter(b => b !== book);
+  setDirty(); renderList(); toast(`Deleted "${book.title}". Tap Publish to save.`);
+  return true;
+}
+$("del").onclick = () => remove(editing) && $("dlg").close();
 $("addBook").onclick = () => openEditor();
 
 /* ---------- list ---------- */
@@ -332,16 +338,21 @@ function renderList() {
   $("list").innerHTML = list.length ? list.map(b => `
     <div class="item" data-id="${esc(b.id)}">
       ${b.photos?.[0] ? `<img class="thumb" src="${esc(src(b.photos[0]))}" alt="">` : `<div class="thumb">${b.blind ? "🎁" : "📕"}</div>`}
-      <div><div class="t">${esc(b.title)} ${b.blind ? "🎁" : ""}</div><div class="s">${esc(b.author || "")} · ${b.edition === "original" ? "Original" : "First copy"} · ${b.condition} · ${b.photos?.length || 0} photo${b.photos?.length === 1 ? "" : "s"}</div></div>
+      <div><div class="t">${esc(b.title)} ${b.blind ? "🎁" : ""}</div><div class="s">${esc(b.author || "")} · ${b.edition === "original" ? "Original" : "First copy"} · ${b.condition}${b.mrp ? ` · MRP ₹${b.mrp}` : ""} · ${b.photos?.length || 0} 📷</div></div>
       <div class="ctl">
         <select data-status aria-label="Status">${["available", "reserved", "sold"].map(s => `<option value="${s}" ${b.status === s ? "selected" : ""}>${s[0].toUpperCase() + s.slice(1)}</option>`).join("")}</select>
         ${b.status === "sold" ? `<input class="sold-amt" data-sold type="number" min="0" placeholder="₹ paid" value="${b.soldFor ?? ""}" aria-label="Sold for">` : ""}
-        <button class="btn ghost" data-edit>Edit</button>
+        <button class="btn ghost" data-edit>✏️ Edit</button>
+        <button class="btn danger" data-del aria-label="Delete ${esc(b.title)}">🗑️</button>
       </div>
     </div>`).join("") : `<p class="muted" style="text-align:center">No books yet. Tap <b>+ Add book</b>.</p>`;
 }
 $("find").oninput = renderList;
-$("list").onclick = e => { if (e.target.closest("[data-edit]")) openEditor(data.books.find(b => b.id === e.target.closest(".item").dataset.id)); };
+$("list").onclick = e => {
+  const book = () => data.books.find(b => b.id === e.target.closest(".item").dataset.id);
+  if (e.target.closest("[data-edit]")) openEditor(book());
+  if (e.target.closest("[data-del]")) remove(book());
+};
 $("list").onchange = e => {
   const b = data.books.find(x => x.id === e.target.closest(".item")?.dataset.id); if (!b) return;
   if (e.target.matches("[data-status]")) { b.status = e.target.value; setDirty(); renderList(); if (b.status === "sold") $("list").querySelector(`[data-id="${CSS.escape(b.id)}"] [data-sold]`)?.focus(); }
@@ -349,10 +360,10 @@ $("list").onchange = e => {
 };
 
 /* ---------- site settings ---------- */
-const SF = $("fSite").elements, SITE_KEYS = ["owner", "whatsapp", "ngoName", "ngoLink", "ngoAbout", "goal", "minPrice", "maxPrice"], NUM = ["goal", "minPrice", "maxPrice"];
+const SF = $("fSite").elements, SITE_KEYS = ["owner", "whatsapp", "phone", "instagram", "ngoName", "ngoLink", "ngoAbout", "goal", "minPrice", "maxPrice"], NUM = ["goal", "minPrice", "maxPrice"];
 function fillSite() { SITE_KEYS.forEach(k => SF[k].value = data.site[k] ?? ""); }
 function readSite() {
-  SITE_KEYS.forEach(k => data.site[k] = NUM.includes(k) ? +SF[k].value || 0 : k === "whatsapp" ? SF[k].value.replace(/\D/g, "") : SF[k].value.trim());
+  SITE_KEYS.forEach(k => data.site[k] = NUM.includes(k) ? +SF[k].value || 0 : k === "whatsapp" || k === "phone" ? SF[k].value.replace(/\D/g, "") : SF[k].value.trim());
   if (data.site.minPrice > data.site.maxPrice) [data.site.minPrice, data.site.maxPrice] = [data.site.maxPrice, data.site.minPrice];
 }
 $("fSite").oninput = () => setDirty();

@@ -9,11 +9,12 @@ A New Year book giveaway by Reyvan Sumbre. People pick a book, choose any price 
 
 Open `admin.html`, enter the password, and you can:
 
-- add, edit and delete books
+- add books, and edit or delete any book with the ✏️ and 🗑️ buttons on its row
+- record the MRP (the price printed on the book), which buyers see next to the pay-what-you-like range
 - upload photos straight from your phone camera (they're shrunk automatically, and the first photo is the cover)
 - mark a book **Available**, **Reserved** or **Sold**, and enter what it sold for (this feeds the "raised so far" counter)
 - turn a book into a **🎁 Blind date** (title hidden, only a clue shown)
-- change site settings: NGO name and link, WhatsApp number, price range and fundraising goal
+- change site settings: NGO name and link, WhatsApp and phone number, Instagram link, price range and fundraising goal
 
 Tap **Publish to site** when you're done. The live site updates about a minute later.
 
