@@ -1,0 +1,21 @@
+{
+  "site": {
+    "owner": "Reyvan Sumbre",
+    "whatsapp": "919167424492",
+    "ngoName": "YOUR NGO NAME",
+    "ngoAbout": "Every rupee you pay goes straight to the NGO. I keep nothing.",
+    "ngoLink": "",
+    "goal": 10000,
+    "minPrice": 50,
+    "maxPrice": 500
+  },
+  "books": [
+    { "id": "alchemist-a1", "title": "The Alchemist", "author": "Paulo Coelho", "genre": "Fiction", "edition": "original", "condition": "good", "note": "Read it twice, still crisp. A short read that stays with you.", "photos": [], "status": "available" },
+    { "id": "atomic-habits-b2", "title": "Atomic Habits", "author": "James Clear", "genre": "Self-help", "edition": "first-copy", "condition": "good", "note": "", "photos": [], "status": "available" },
+    { "id": "hp-1-c3", "title": "Harry Potter and the Philosopher's Stone", "author": "J.K. Rowling", "genre": "Fantasy", "edition": "original", "condition": "fair", "note": "Spine creased from too many re-reads. Pages clean.", "photos": [], "status": "reserved" },
+    { "id": "wings-of-fire-d4", "title": "Wings of Fire", "author": "A.P.J. Abdul Kalam", "genre": "Biography", "edition": "original", "condition": "worn", "note": "Some pencil underlining on my favourite lines.", "photos": [], "status": "available" },
+    { "id": "mystery-e5", "title": "And Then There Were None", "author": "Agatha Christie", "genre": "Mystery", "edition": "original", "condition": "fair", "note": "", "photos": [], "status": "available", "blind": true, "hint": "Ten strangers. One island. Nobody leaves." },
+    { "id": "wimpy-kid-f6", "title": "Diary of a Wimpy Kid", "author": "Jeff Kinney", "genre": "Kids", "edition": "first-copy", "condition": "worse", "note": "Cover torn at one corner, fully readable.", "photos": [], "status": "available" },
+    { "id": "sapiens-g7", "title": "Sapiens", "author": "Yuval Noah Harari", "genre": "Non-fiction", "edition": "original", "condition": "good", "note": "", "photos": [], "status": "sold", "soldFor": 300 }
+  ]
+}

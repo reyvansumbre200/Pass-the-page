@@ -1,25 +1,31 @@
 # Pass the Page
 
-A New Year book giveaway. People choose a book and pay anything from ₹50 to ₹500, and all of the money goes to an NGO.
+A New Year book giveaway by Reyvan Sumbre. People pick a book, choose any price from ₹50 to ₹500 and tap **Take it**. That opens WhatsApp with a message to Reyvan saying which book they want and how much they're giving. All of the money goes to an NGO.
 
-## How to update it
+**Live site:** https://reyvansumbre200.github.io/Pass-the-page/
+**Admin:** https://reyvansumbre200.github.io/Pass-the-page/admin.html
 
-Everything you need to change is in **`books.js`**:
+## Managing books (admin)
 
-1. **`SITE`**: the NGO's name, its UPI ID (this makes the payment QR code) and your WhatsApp number (people message you after they pay).
-2. **`BOOKS`**: one line per book. Copy a line and change it.
-   - `edition`: `"original"` or `"first-copy"`
-   - `condition`: `"good"`, `"fair"`, `"worn"` or `"worse"`
-   - `sold: true` once someone has paid (the book stays on the site, greyed out)
-   - `cover`: optional photo, e.g. put `alchemist.jpg` in a `covers/` folder and write `cover: "covers/alchemist.jpg"`
+Open `admin.html`, enter the password, and you can:
 
-The books in the file right now are **examples**. Replace them with your own.
+- add, edit and delete books
+- upload photos straight from your phone camera (they're shrunk automatically, and the first photo is the cover)
+- mark a book **Available**, **Reserved** or **Sold**, and enter what it sold for (this feeds the "raised so far" counter)
+- turn a book into a **🎁 Blind date** (title hidden, only a clue shown)
+- change site settings: NGO name and link, WhatsApp number, price range and fundraising goal
 
-## Put it online (free)
+Tap **Publish to site** when you're done. The live site updates about a minute later.
 
-Go to repo **Settings → Pages**, set Source to *Deploy from a branch*, choose `main` and `/ (root)`, then click Save. After about a minute the site is live at
-`https://reyvansumbre200.github.io/Pass-the-page/`
+The first time on each device, the admin asks for a GitHub key. The page walks you through creating one, and it takes about 2 minutes. The key stays on that device only.
 
-## How payment works
+## Turning the site on (once)
 
-There's no server. Buyers pay the NGO directly with the UPI QR code, then tap **"I've paid"**, which opens WhatsApp with a message telling you which book they paid for and how much. Check the NGO received it, hand over the book, and set `sold: true`.
+Repo **Settings → Pages**: Source *Deploy from a branch*, branch `main`, folder `/ (root)`, then click Save.
+
+## Files
+
+- `index.html`: the public site
+- `admin.html`: the admin portal
+- `books.json`: all books and settings (the admin edits this for you)
+- `photos/`: book photos uploaded through the admin

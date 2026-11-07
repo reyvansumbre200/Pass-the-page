@@ -2,257 +2,544 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pass the Page — pay what you like, give to charity</title>
-<meta name="description" content="Pre-loved books, pay anything from ₹50 to ₹500. Every rupee goes to charity.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pass the Page | Pay what you like, give to charity</title>
+<meta name="description" content="Pre-loved books from Reyvan's shelf. Pay anything from ₹50 to ₹500 and every rupee goes to charity.">
+<meta property="og:title" content="Pass the Page">
+<meta property="og:description" content="Pre-loved books. Pay what you like. 100% goes to charity.">
+<meta name="theme-color" content="#f7f1e6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c1814" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=Inter:wght@400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #f7f1e6; --card: #fffdf8; --ink: #2a2118; --muted: #74685a; --line: #e4d9c6;
-    --accent: #c4552d; --accent-ink: #fff; --green: #3d7a4f; --amber: #c48a1d; --orange: #cf6a2a; --red: #b03a2e;
-    --radius: 14px; --shadow: 0 1px 2px rgb(42 33 24 / .06), 0 8px 24px rgb(42 33 24 / .08);
+    --paper: #f7f1e6; --card: #fffdf8; --ink: #2a2118; --muted: #74685a; --line: #e4d9c6; --soft: #efe6d6;
+    --accent: #c4552d; --accent-ink: #fff; --wa: #1f9d55;
+    --green: #3d7a4f; --amber: #c48a1d; --orange: #cf6a2a; --red: #b03a2e;
+    --kraft: #c8a36d;
+    --radius: 16px; --shadow: 0 1px 2px rgb(42 33 24 / .06), 0 10px 30px rgb(42 33 24 / .09);
   }
   @media (prefers-color-scheme: dark) {
-    :root { --paper: #1c1814; --card: #26201a; --ink: #f1e8da; --muted: #a8998a; --line: #3a3128; --accent: #e07a4f; }
+    :root { --paper: #1c1814; --card: #26201a; --ink: #f1e8da; --muted: #a8998a; --line: #3a3128; --soft: #2f2820; --accent: #e07a4f; --kraft: #a9855a; }
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.55 Inter, system-ui, sans-serif; }
-  h1, h2, h3 { font-family: Fraunces, Georgia, serif; line-height: 1.15; margin: 0; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.6 Inter, system-ui, sans-serif; overflow-x: hidden; }
+  h1, h2, h3 { font-family: Fraunces, Georgia, serif; line-height: 1.12; margin: 0; letter-spacing: -.01em; }
   a { color: var(--accent); }
-  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+  button { font: inherit; color: inherit; }
+  .wrap { max-width: 1160px; margin-inline: auto; padding-inline: 20px; }
+  .hand { font-family: Caveat, cursive; color: var(--accent); }
+  section { padding-block: 56px; }
+  .sec-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+  .sec-head h2 { font-size: clamp(30px, 4.5vw, 44px); }
+  .sec-head p { margin: 6px 0 0; color: var(--muted); }
 
-  /* hero */
-  header { padding: 64px 0 40px; text-align: center; }
-  .eyebrow { display: inline-block; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 14px; }
-  header h1 { font-size: clamp(44px, 8vw, 84px); font-weight: 800; letter-spacing: -.02em; }
-  header h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
-  .lede { max-width: 620px; margin: 18px auto 0; font-size: 19px; color: var(--muted); }
+  /* ---------- hero ---------- */
+  .hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; padding-block: 56px 32px; }
+  .eyebrow { display: inline-flex; gap: 8px; align-items: center; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .hero h1 { font-size: clamp(52px, 9vw, 104px); font-weight: 800; letter-spacing: -.03em; margin: 12px 0 0; }
+  .hero h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .lede { max-width: 560px; margin: 18px 0 0; font-size: clamp(17px, 2.2vw, 20px); color: var(--muted); }
   .lede strong { color: var(--ink); }
-  .stats { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
-  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 8px 18px; font-size: 14px; }
-  .stat b { font-family: Fraunces, serif; font-size: 18px; margin-right: 4px; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; border: 0; cursor: pointer; border-radius: 12px; padding: 13px 20px; min-height: 48px; background: var(--accent); color: var(--accent-ink); text-decoration: none; transition: transform .12s, filter .12s; }
+  .btn:hover { filter: brightness(1.07); }
+  .btn:active { transform: scale(.98); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+  .btn.wa { background: var(--wa); color: #fff; }
+  .btn:disabled { background: var(--line); color: var(--muted); cursor: not-allowed; }
+
+  /* stacked spines illustration */
+  .shelf { position: relative; height: 360px; display: flex; align-items: flex-end; justify-content: center; gap: 6px; padding-bottom: 14px; }
+  .shelf::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 14px; border-radius: 4px; background: linear-gradient(var(--kraft), color-mix(in srgb, var(--kraft) 70%, #000)); box-shadow: 0 10px 20px rgb(0 0 0 / .15); }
+  .spine { width: 44px; border-radius: 4px 4px 2px 2px; position: relative; box-shadow: inset -6px 0 10px rgb(0 0 0 / .18), inset 3px 0 0 rgb(255 255 255 / .15); transform-origin: bottom center; animation: rise .7s cubic-bezier(.2, .8, .2, 1.2) backwards; }
+  .spine::before, .spine::after { content: ""; position: absolute; left: 8px; right: 8px; height: 2px; background: rgb(255 255 255 / .35); }
+  .spine::before { top: 18px; } .spine::after { bottom: 18px; }
+  .spine.tilt { transform: rotate(-8deg); margin-right: 14px; }
+  @keyframes rise { from { transform: translateY(40px) scaleY(.6); opacity: 0; } }
+
+  /* impact */
+  .impact { display: grid; grid-template-columns: repeat(3, 1fr) 2fr; gap: 14px; }
+  .tile { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+  .tile b { display: block; font-family: Fraunces, serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.1; }
+  .tile > span { color: var(--muted); font-size: 14px; }
+  .goal .bar { height: 12px; border-radius: 99px; background: var(--soft); overflow: hidden; margin: 12px 0 6px; }
+  .goal .bar i { display: block; height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--accent), var(--amber)); transition: width 1.2s cubic-bezier(.2, .8, .2, 1); }
+  .goal .row { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); }
 
   /* steps */
-  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-block: 24px 48px; }
-  .step { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
-  .step > span { font-family: Fraunces, serif; font-size: 28px; color: var(--accent); font-weight: 800; }
-  .step h3 { font-size: 18px; margin: 4px 0 6px; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: s; }
+  .step { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; position: relative; }
+  .step::before { counter-increment: s; content: counter(s); font-family: Fraunces, serif; font-size: 36px; font-weight: 800; color: var(--accent); display: block; line-height: 1; margin-bottom: 8px; }
+  .step h3 { font-size: 19px; margin-bottom: 6px; }
   .step p { margin: 0; color: var(--muted); font-size: 15px; }
 
-  /* filters */
-  .bar { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(8px); padding: 14px 0; border-bottom: 1px solid var(--line); }
-  .bar .wrap { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-  .bar input[type=search], .bar select { font: inherit; font-size: 15px; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--card); color: var(--ink); }
-  .bar input[type=search] { flex: 1 1 220px; }
-  .bar label { font-size: 14px; color: var(--muted); display: flex; gap: 6px; align-items: center; }
-  .legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--muted); margin: 18px 0 0; }
+  /* toolbar */
+  .toolbar { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); padding-block: 12px; }
+  .toolbar .wrap { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; }
+  .search { position: relative; }
+  .search input { width: 100%; font: inherit; font-size: 16px; padding: 11px 14px 11px 40px; border-radius: 12px; border: 1px solid var(--line); background: var(--card); color: var(--ink); }
+  .search svg { position: absolute; left: 13px; top: 50%; translate: 0 -50%; color: var(--muted); }
+  select { font: inherit; font-size: 15px; padding: 11px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--card); color: var(--ink); }
+  .chips { grid-column: 1 / -1; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip { flex: none; font-size: 14px; padding: 7px 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--card); cursor: pointer; white-space: nowrap; }
+  .chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .chip.surprise { background: var(--accent); color: #fff; border-color: var(--accent); }
 
   /* grid */
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; padding: 24px 0 64px; }
-  .book { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow); transition: transform .15s; }
-  .book:hover { transform: translateY(-3px); }
-  .book.sold { opacity: .55; }
-  .cover { aspect-ratio: 3/4; position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 18px; color: #fff; overflow: hidden; }
+  .count { color: var(--muted); font-size: 14px; margin: 20px 0 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 24px; padding-block: 16px 24px; }
+  .book { all: unset; cursor: pointer; display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform .18s, box-shadow .18s; animation: fade .4s backwards; }
+  .book:hover { transform: translateY(-4px) rotate(-.3deg); box-shadow: 0 14px 40px rgb(42 33 24 / .16); }
+  .book:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .book.sold { opacity: .6; }
+  @keyframes fade { from { opacity: 0; transform: translateY(10px); } }
+  .cover { aspect-ratio: 3/4; position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 18px 18px 18px 26px; color: #fff; overflow: hidden; }
   .cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .cover::before { content: ""; position: absolute; left: 10px; top: 0; bottom: 0; width: 3px; background: rgb(255 255 255 / .25); }
-  .cover .t { font-family: Fraunces, serif; font-weight: 800; font-size: 22px; line-height: 1.1; position: relative; }
-  .cover .a { font-size: 13px; opacity: .85; margin-top: 6px; position: relative; }
-  .ribbon { position: absolute; top: 12px; right: 12px; background: var(--ink); color: var(--paper); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; z-index: 1; }
+  .cover.gen::before { content: ""; position: absolute; left: 12px; top: 0; bottom: 0; width: 3px; background: rgb(255 255 255 / .25); }
+  .cover.gen::after { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 80% at 80% 0%, rgb(255 255 255 / .18), transparent 60%); }
+  .cover .t { font-family: Fraunces, serif; font-weight: 800; font-size: clamp(18px, 2.2vw, 23px); line-height: 1.1; position: relative; z-index: 1; }
+  .cover .a { font-size: 13px; opacity: .85; margin-top: 6px; position: relative; z-index: 1; }
+  .cover.blind { background: var(--kraft) repeating-linear-gradient(45deg, rgb(0 0 0 / .03) 0 2px, transparent 2px 6px); color: #3b2a14; justify-content: center; text-align: center; padding: 22px; }
+  .cover.blind::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 6px; translate: -50%; background: #8c2f2f; box-shadow: 0 0 0 1px rgb(0 0 0 / .1); }
+  .cover.blind .tag-card { position: relative; z-index: 1; background: #fbf6ec; padding: 14px 12px; border-radius: 6px; box-shadow: 0 6px 14px rgb(0 0 0 / .18); rotate: -3deg; }
+  .cover.blind .tag-card .hand { font-size: 26px; line-height: 1; display: block; }
+  .cover.blind .tag-card p { margin: 6px 0 0; font-size: 13px; font-style: italic; color: #5a4630; }
+  .badge { position: absolute; top: 12px; right: 12px; z-index: 2; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 5px 10px; border-radius: 99px; background: var(--ink); color: var(--paper); }
+  .badge.res { background: var(--amber); color: #fff; }
+  .badge.photos { top: auto; bottom: 12px; background: rgb(0 0 0 / .55); color: #fff; letter-spacing: 0; text-transform: none; }
   .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .body .ttl { font-weight: 600; line-height: 1.3; }
+  .body .au { font-size: 13px; color: var(--muted); }
   .tags { display: flex; gap: 6px; flex-wrap: wrap; }
-  .tag { font-size: 12px; font-weight: 600; padding: 4px 9px; border-radius: 999px; border: 1px solid var(--line); }
+  .tag { font-size: 12px; font-weight: 600; padding: 4px 9px; border-radius: 99px; border: 1px solid var(--line); }
   .tag.orig { background: #e6f2ea; color: #245a35; border-color: #c6e0cf; }
   .tag.copy { background: #fbefd9; color: #7a5410; border-color: #f0dbb3; }
   .cond { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
-  .meter { display: flex; gap: 3px; }
+  .meter { display: inline-flex; gap: 3px; }
   .meter i { width: 16px; height: 6px; border-radius: 3px; background: var(--line); }
-  .note { font-size: 13px; color: var(--muted); margin: 0; flex: 1; }
-  .btn { font: inherit; font-weight: 600; border: 0; cursor: pointer; border-radius: 10px; padding: 11px 16px; background: var(--accent); color: var(--accent-ink); text-decoration: none; text-align: center; }
-  .btn:hover { filter: brightness(1.07); }
-  .btn:disabled { background: var(--line); color: var(--muted); cursor: not-allowed; }
-  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
-  .empty { grid-column: 1/-1; text-align: center; color: var(--muted); padding: 48px 0; }
+  .price-hint { margin-top: auto; display: flex; justify-content: space-between; align-items: center; font-size: 14px; padding-top: 10px; border-top: 1px dashed var(--line); }
+  .price-hint b { font-family: Fraunces, serif; font-size: 18px; }
+  .price-hint .go { color: var(--accent); font-weight: 600; }
+  .empty { grid-column: 1/-1; text-align: center; color: var(--muted); padding: 56px 0; }
 
-  /* dialog */
-  dialog { border: 0; border-radius: 18px; padding: 0; width: min(460px, calc(100vw - 32px)); background: var(--card); color: var(--ink); box-shadow: 0 30px 80px rgb(0 0 0 / .3); }
-  dialog::backdrop { background: rgb(28 22 16 / .55); }
-  .dlg { padding: 24px; }
-  .dlg h2 { font-size: 26px; }
-  .dlg .by { color: var(--muted); margin: 4px 0 16px; }
-  .amount { font-family: Fraunces, serif; font-size: 48px; font-weight: 800; text-align: center; margin: 8px 0; }
-  input[type=range] { width: 100%; accent-color: var(--accent); }
-  .chips { display: flex; gap: 8px; justify-content: center; margin: 12px 0 18px; flex-wrap: wrap; }
-  .chips button { font: inherit; font-size: 14px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
-  .chips button.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-  .pay { border-top: 1px dashed var(--line); padding-top: 18px; text-align: center; }
-  #qr { display: inline-block; padding: 10px; background: #fff; border-radius: 10px; margin: 8px 0; }
-  .pay small { display: block; color: var(--muted); }
-  .actions { display: grid; gap: 10px; margin-top: 16px; }
-  .close { position: absolute; top: 12px; right: 14px; background: none; border: 0; font-size: 26px; color: var(--muted); cursor: pointer; }
+  /* guide + faq */
+  .guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .guide .tile h3 { font-size: 18px; display: flex; gap: 10px; align-items: center; margin-bottom: 6px; }
+  .guide .tile p { margin: 0; color: var(--muted); font-size: 15px; }
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 4px 20px; margin-bottom: 10px; }
+  summary { cursor: pointer; font-weight: 600; padding: 14px 0; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-size: 22px; line-height: 1; color: var(--accent); transition: rotate .2s; }
+  details[open] summary::after { rotate: 45deg; }
+  details p { margin: 0 0 16px; color: var(--muted); }
 
-  footer { border-top: 1px solid var(--line); padding: 32px 0 48px; text-align: center; color: var(--muted); font-size: 14px; }
+  .ngo-card { display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: center; background: var(--ink); color: var(--paper); border-radius: 24px; padding: clamp(24px, 5vw, 48px); }
+  .ngo-card .big { font-family: Fraunces, serif; font-size: clamp(56px, 10vw, 110px); font-weight: 800; line-height: 1; color: var(--accent); }
+  .ngo-card h2 { font-size: clamp(26px, 4vw, 38px); }
+  .ngo-card p { margin: 10px 0 0; opacity: .8; }
+  .ngo-card a { color: var(--paper); }
+
+  footer { border-top: 1px solid var(--line); padding-block: 32px 48px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer a { color: var(--muted); }
+
+  /* ---------- book dialog ---------- */
+  dialog { border: 0; padding: 0; background: var(--card); color: var(--ink); width: min(880px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); border-radius: 22px; box-shadow: 0 30px 80px rgb(0 0 0 / .35); overflow: hidden; }
+  dialog[open] { animation: pop .25s cubic-bezier(.2, .8, .2, 1); }
+  @keyframes pop { from { opacity: 0; transform: translateY(20px) scale(.98); } }
+  dialog::backdrop { background: rgb(28 22 16 / .6); backdrop-filter: blur(3px); }
+  dialog:not(.x) { height: min(700px, calc(100dvh - 32px)); }
+  .dlg { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); height: 100%; }
+  .gallery { position: relative; background: var(--soft); min-height: 0; }
+  .slides { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; height: 100%; scrollbar-width: none; }
+  .slides::-webkit-scrollbar { display: none; }
+  .slides > * { flex: 0 0 100%; scroll-snap-align: center; height: 100%; }
+  .slides img { width: 100%; height: 100%; object-fit: cover; }
+  .slides .cover { border-radius: 0; }
+  .dots { position: absolute; bottom: 12px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; }
+  .dots i { width: 7px; height: 7px; border-radius: 50%; background: rgb(255 255 255 / .5); transition: .2s; }
+  .dots i.on { background: #fff; width: 18px; border-radius: 4px; }
+  .navbtn { position: absolute; top: 50%; translate: 0 -50%; width: 38px; height: 38px; border-radius: 50%; border: 0; background: rgb(255 255 255 / .85); color: #222; cursor: pointer; font-size: 18px; }
+  .navbtn.prev { left: 10px; } .navbtn.next { right: 10px; }
+  .info { padding: 28px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+  .info h2 { font-size: clamp(24px, 3vw, 32px); padding-right: 36px; }
+  .info .by { color: var(--muted); margin-top: -8px; }
+  .quote { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; margin: 0; font-style: italic; color: var(--muted); }
+  .quote .hand { font-style: normal; font-size: 20px; display: block; }
+  .explain { font-size: 14px; color: var(--muted); background: var(--soft); border-radius: 12px; padding: 12px 14px; display: grid; gap: 6px; }
+  .explain b { color: var(--ink); }
+  .explain .cond { align-items: flex-start; }
+  .explain .meter { margin-top: 8px; flex: none; }
+  .picker { border: 1px solid var(--line); border-radius: 16px; padding: 16px; }
+  .picker .lbl { font-size: 14px; color: var(--muted); text-align: center; }
+  .amount { display: flex; justify-content: center; align-items: baseline; font-family: Fraunces, serif; font-size: 52px; font-weight: 800; line-height: 1.1; }
+  .amount input { all: unset; width: 4ch; text-align: left; }
+  input[type=range] { width: 100%; accent-color: var(--accent); height: 28px; }
+  .presets { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-top: 6px; }
+  .presets button { font-size: 14px; padding: 7px 13px; border-radius: 99px; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+  .presets button.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .field { font: inherit; font-size: 16px; width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); }
+  .row2 { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+  .fine { font-size: 13px; color: var(--muted); text-align: center; margin: 0; }
+  .x { position: absolute; top: 14px; right: 14px; z-index: 5; width: 38px; height: 38px; border-radius: 50%; border: 0; background: rgb(0 0 0 / .45); color: #fff; font-size: 22px; cursor: pointer; line-height: 1; }
+
+  .toast { position: fixed; left: 50%; bottom: 24px; translate: -50% 0; background: var(--ink); color: var(--paper); padding: 12px 18px; border-radius: 12px; font-size: 14px; z-index: 100; opacity: 0; transition: .25s; pointer-events: none; }
+  .toast.show { opacity: 1; translate: -50% -6px; }
+
+  /* ---------- tablet & phone ---------- */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding-top: 36px; }
+    .shelf { height: 170px; order: -1; }
+    .spine { width: 32px; }
+    .impact { grid-template-columns: repeat(3, 1fr); }
+    .impact .goal { grid-column: 1 / -1; }
+  }
+  @media (max-width: 640px) {
+    section { padding-block: 40px; }
+    .steps { grid-template-columns: 1fr; }
+    .tile { padding: 14px; }
+    .tile > span { font-size: 12px; line-height: 1.3; display: block; }
+    .toolbar .wrap { grid-template-columns: 1fr 1fr; }
+    .search { grid-column: 1 / -1; }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .cover { padding: 12px 12px 12px 20px; }
+    .cover.gen::before { left: 9px; }
+    .body { padding: 10px 12px 12px; gap: 8px; }
+    .body .tags .tag:nth-child(n+2) { display: none; }
+    .meter i { width: 10px; }
+    .price-hint { font-size: 12px; }
+    .price-hint b { font-size: 15px; }
+    .ngo-card { grid-template-columns: 1fr; }
+    /* dialog becomes a bottom sheet */
+    dialog { width: 100vw; max-width: 100vw; max-height: 94dvh; margin: auto 0 0; border-radius: 22px 22px 0 0; }
+    dialog[open] { animation: up .3s cubic-bezier(.2, .8, .2, 1); }
+    @keyframes up { from { transform: translateY(100%); } }
+    dialog:not(.x) { height: auto; }
+    .dlg { grid-template-columns: 1fr; overflow-y: auto; max-height: 94dvh; height: auto; }
+    .slides { height: auto; align-items: flex-start; }
+    .slides > * { height: auto; aspect-ratio: 4/3.4; }
+    .info { overflow: visible; padding: 20px 20px calc(20px + env(safe-area-inset-bottom)); }
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
 
-<header class="wrap">
-  <div class="eyebrow">A New Year book giveaway</div>
-  <h1>Pass the <em>Page</em></h1>
-  <p class="lede">Books I've loved, looking for new shelves. Pay anything from <strong>₹<span class="min"></span> to ₹<span class="max"></span></strong> — every rupee goes to <strong class="ngo"></strong>.</p>
-  <div class="stats">
-    <div class="stat"><b id="sAvail">0</b>books available</div>
-    <div class="stat"><b id="sOrig">0</b>originals</div>
-    <div class="stat"><b>100%</b>to charity</div>
+<header class="wrap hero">
+  <div>
+    <span class="eyebrow">📚 A New Year book giveaway</span>
+    <h1>Pass the <em>Page</em></h1>
+    <p class="lede">Books I've loved, now looking for new shelves. Pay anything from <strong>₹<span data-s="minPrice"></span> to ₹<span data-s="maxPrice"></span></strong>, and every single rupee goes to <strong data-s="ngoName"></strong>.</p>
+    <div class="cta">
+      <a class="btn" href="#books">Browse the shelf</a>
+      <button class="btn ghost" id="surpriseTop">🎲 Surprise me</button>
+    </div>
   </div>
+  <div class="shelf" id="shelf" aria-hidden="true"></div>
 </header>
 
-<section class="wrap steps">
-  <div class="step"><span>1</span><h3>Pick a book</h3><p>Each listing tells you if it's an original or a first copy, and how worn it is.</p></div>
-  <div class="step"><span>2</span><h3>Choose your price</h3><p>Anything between ₹<span class="min"></span> and ₹<span class="max"></span>. Pay what it's worth to you.</p></div>
-  <div class="step"><span>3</span><h3>Pay the NGO directly</h3><p>Scan the UPI code, then send me a message so I can keep the book for you.</p></div>
+<div class="wrap impact" aria-label="Impact so far">
+  <div class="tile"><b id="iAvail">0</b><span>books waiting</span></div>
+  <div class="tile"><b id="iHome">0</b><span>found a home</span></div>
+  <div class="tile"><b>100%</b><span>to charity</span></div>
+  <div class="tile goal">
+    <div class="row"><span>Raised so far</span><span>Goal ₹<span id="iGoal"></span></span></div>
+    <div class="bar"><i id="iBar"></i></div>
+    <b>₹<span id="iRaised">0</span></b>
+  </div>
+</div>
+
+<section class="wrap" id="how">
+  <div class="sec-head"><div><h2>How it works</h2><p>No accounts, no checkout. Just a book, a price you choose and a quick WhatsApp chat.</p></div></div>
+  <div class="steps">
+    <div class="step"><h3>Pick a book</h3><p>Every listing tells you whether it's an original or a first copy, and exactly how worn it is. Real photos, no surprises (unless you want one).</p></div>
+    <div class="step"><h3>Choose your price</h3><p>Slide anywhere from ₹<span data-s="minPrice"></span> to ₹<span data-s="maxPrice"></span>. Pay what the book is worth to you.</p></div>
+    <div class="step"><h3>Take it on WhatsApp</h3><p>Tap <b>Take it</b> and a message goes straight to <span data-s="owner"></span>. He'll sort payment to the NGO and pickup with you.</p></div>
+  </div>
 </section>
 
-<nav class="bar" aria-label="Filter books">
+<div class="toolbar" id="books">
   <div class="wrap">
-    <input type="search" id="q" placeholder="Search title, author, genre…" aria-label="Search">
-    <select id="fEd" aria-label="Edition">
-      <option value="">Any edition</option>
-      <option value="original">Original only</option>
-      <option value="first-copy">First copy only</option>
-    </select>
+    <label class="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="q" placeholder="Search title, author, genre" aria-label="Search books">
+    </label>
     <select id="fCond" aria-label="Condition">
       <option value="">Any condition</option>
       <option value="good">Good</option>
       <option value="fair">Fair or better</option>
       <option value="worn">Worn or better</option>
     </select>
-    <label><input type="checkbox" id="fSold"> Show sold</label>
+    <select id="fSort" aria-label="Sort">
+      <option value="">Newest</option>
+      <option value="az">A to Z</option>
+      <option value="cond">Best condition</option>
+    </select>
+    <div class="chips" id="chips" role="group" aria-label="Filter"></div>
   </div>
-</nav>
+</div>
 
 <main class="wrap">
-  <div class="legend" id="legend"></div>
-  <div class="grid" id="grid"></div>
+  <p class="count" id="count"></p>
+  <div class="grid" id="grid"><p class="empty">Loading the shelf…</p></div>
 </main>
 
+<section class="wrap" id="guide">
+  <div class="sec-head"><div><h2>Know what you're getting</h2><p>Honest grading. If I'm unsure, I grade it lower.</p></div></div>
+  <div class="guide" id="guideGrid"></div>
+</section>
+
+<section class="wrap">
+  <div class="ngo-card">
+    <div class="big">100%</div>
+    <div>
+      <h2>Every rupee goes to <span data-s="ngoName"></span></h2>
+      <p data-s="ngoAbout"></p>
+      <p id="ngoLink"></p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="faq">
+  <div class="sec-head"><div><h2>Questions</h2></div></div>
+  <details><summary>How do I pay?</summary><p>After you tap Take it, <span data-s="owner"></span> will reply on WhatsApp with the NGO's payment details. You pay the NGO directly, so the money never passes through anyone else.</p></details>
+  <details><summary>What's a "first copy"?</summary><p>A replica print, not from the original publisher. Same words, cheaper paper. Every listing clearly says whether a book is an original or a first copy.</p></details>
+  <details><summary>What's a blind date book?</summary><p>A book wrapped up with only a few clues on it. You choose it by the hints, not the cover. The title is revealed when you pick it up.</p></details>
+  <details><summary>How do I get the book?</summary><p>Pickup or hand-over is arranged with <span data-s="owner"></span> on WhatsApp once you've reserved it.</p></details>
+  <details><summary>Someone already reserved the book I want.</summary><p>Message anyway from the book page. If the other person backs out, you're next in line.</p></details>
+</section>
+
 <footer class="wrap">
-  <p>Pass the Page · All proceeds go to <strong class="ngo"></strong>.</p>
-  <p id="contact"></p>
+  <span>Pass the Page · Run by <span data-s="owner"></span> · <a id="waFoot" target="_blank" rel="noopener">WhatsApp</a></span>
+  <a href="admin.html">Admin</a>
 </footer>
 
-<dialog id="dlg">
-  <button class="close" aria-label="Close" onclick="dlg.close()">×</button>
+<dialog id="dlg" aria-labelledby="dTitle">
+  <button class="x" aria-label="Close" data-close>×</button>
   <div class="dlg">
-    <h2 id="dTitle"></h2>
-    <p class="by" id="dBy"></p>
-    <div class="tags" id="dTags"></div>
-    <p style="margin:18px 0 0;text-align:center;color:var(--muted)">I'd like to give</p>
-    <div class="amount">₹<span id="dAmt"></span></div>
-    <input type="range" id="dRange" step="10" aria-label="Amount">
-    <div class="chips" id="dChips"></div>
-    <div class="pay" id="dPay">
-      <strong>Scan with any UPI app</strong>
-      <div id="qr"></div>
-      <small>Paying <span class="ngo"></span> · <span id="dUpi"></span></small>
-      <div class="actions">
-        <a class="btn ghost" id="dUpiBtn">Open UPI app (on phone)</a>
-      </div>
+    <div class="gallery">
+      <div class="slides" id="slides"></div>
+      <div class="dots" id="dots"></div>
     </div>
-    <div class="actions">
-      <a class="btn" id="dTell" target="_blank" rel="noopener">I've paid — reserve this book</a>
-    </div>
+    <div class="info" id="info"></div>
   </div>
 </dialog>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="books.js"></script>
+<div class="toast" id="toast" role="status"></div>
+
 <script>
-  const COND = {
-    good:  { label: "Good",  level: 4, color: "var(--green)" },
-    fair:  { label: "Fair",  level: 3, color: "var(--amber)" },
-    worn:  { label: "Worn",  level: 2, color: "var(--orange)" },
-    worse: { label: "Worse", level: 1, color: "var(--red)" },
+const COND = {
+  good:  { label: "Good",  level: 4, color: "var(--green)",  icon: "✨", desc: "Clean pages, tight spine, barely any signs of reading." },
+  fair:  { label: "Fair",  level: 3, color: "var(--amber)",  icon: "👍", desc: "Light wear. Maybe a creased spine or scuffed cover. Pages are clean." },
+  worn:  { label: "Worn",  level: 2, color: "var(--orange)", icon: "📖", desc: "Clearly read and loved. Some markings, folds or cover wear. All pages intact." },
+  worse: { label: "Worse", level: 1, color: "var(--red)",    icon: "🩹", desc: "Heavy wear or damage, but complete and perfectly readable." },
+};
+const ED = {
+  original:     { label: "Original",   cls: "orig", desc: "Genuine print from the publisher." },
+  "first-copy": { label: "First copy", cls: "copy", desc: "Replica print, not from the original publisher." },
+};
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const hue = s => [...String(s)].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 360, 7);
+const inr = n => Number(n || 0).toLocaleString("en-IN");
+const meter = c => `<span class="meter" aria-hidden="true">${[1, 2, 3, 4].map(i => `<i style="${i <= COND[c].level ? `background:${COND[c].color}` : ""}"></i>`).join("")}</span>`;
+const toast = msg => { const t = $("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 2200); };
+
+let S, BOOKS = [], filter = "all";
+
+const genCover = b => b.blind
+  ? `<div class="cover blind"><div class="tag-card"><span class="hand">Blind date</span><p>${esc(b.hint || "Trust the mystery.")}</p></div></div>`
+  : `<div class="cover gen" style="background:linear-gradient(160deg,hsl(${hue(b.title)} 42% 42%),hsl(${(hue(b.title) + 40) % 360} 48% 22%))"><div class="t">${esc(b.title)}</div><div class="a">${esc(b.author)}</div></div>`;
+const shownTitle = b => b.blind ? "Blind date with a book" : b.title;
+
+function card(b) {
+  const photo = !b.blind && b.photos?.[0];
+  const badge = b.status === "sold" ? `<span class="badge">Found a home</span>` : b.status === "reserved" ? `<span class="badge res">Reserved</span>` : "";
+  return `<button class="book${b.status === "sold" ? " sold" : ""}" data-id="${esc(b.id)}" aria-label="${esc(shownTitle(b))}">
+    ${photo ? `<div class="cover"><img src="${esc(photo)}" alt="" loading="lazy">${b.photos.length > 1 ? `<span class="badge photos">📷 ${b.photos.length}</span>` : ""}${badge}</div>`
+            : genCover(b).replace(/<\/div>$/, badge + "</div>")}
+    <div class="body">
+      ${photo || b.blind ? `<div><div class="ttl">${esc(shownTitle(b))}</div>${b.blind ? `<div class="au">${esc(b.genre || "Mystery")}</div>` : `<div class="au">${esc(b.author)}</div>`}</div>` : ""}
+      <div class="tags"><span class="tag ${ED[b.edition].cls}">${ED[b.edition].label}</span>${b.genre && !b.blind ? `<span class="tag">${esc(b.genre)}</span>` : ""}</div>
+      <div class="cond">${meter(b.condition)} ${COND[b.condition].label}</div>
+      <div class="price-hint">${b.status === "sold" ? `<span>Given for</span><b>₹${inr(b.soldFor)}</b>` : `<span><b>₹${S.minPrice}</b> to ₹${S.maxPrice}</span><span class="go">View →</span>`}</div>
+    </div>
+  </button>`;
+}
+
+function render() {
+  const q = $("q").value.trim().toLowerCase(), cond = $("fCond").value, sort = $("fSort").value;
+  let list = BOOKS.filter(b =>
+    (filter === "sold" ? b.status === "sold" : b.status !== "sold") &&
+    (filter === "all" || filter === "sold" || (filter === "blind" ? b.blind : filter === b.edition || filter === "g:" + b.genre)) &&
+    (!cond || COND[b.condition].level >= COND[cond].level) &&
+    (!q || (b.blind ? [b.hint, b.genre] : [b.title, b.author, b.genre]).join(" ").toLowerCase().includes(q)));
+  if (sort === "az") list.sort((a, b) => shownTitle(a).localeCompare(shownTitle(b)));
+  if (sort === "cond") list.sort((a, b) => COND[b.condition].level - COND[a.condition].level);
+  $("count").textContent = `${list.length} book${list.length === 1 ? "" : "s"}`;
+  $("grid").innerHTML = list.length ? list.map(card).join("") : `<p class="empty">Nothing matches that. Try loosening the filters, or hit 🎲 Surprise me.</p>`;
+  $("grid").querySelectorAll(".book").forEach((el, i) => el.style.animationDelay = Math.min(i * 40, 400) + "ms");
+}
+
+/* ---------- book dialog ---------- */
+const dlg = $("dlg");
+let cur;
+function openBook(id, push = true) {
+  const b = BOOKS.find(x => x.id === id); if (!b) return;
+  cur = b;
+  const pics = !b.blind && b.photos?.length ? b.photos.map(p => `<img src="${esc(p)}" alt="Photo of ${esc(b.title)}">`) : [genCover(b)];
+  $("slides").innerHTML = pics.join("");
+  $("slides").scrollLeft = 0;
+  $("dots").innerHTML = pics.length > 1 ? pics.map((_, i) => `<i class="${i ? "" : "on"}"></i>`).join("") : "";
+  document.querySelectorAll(".navbtn").forEach(n => n.remove());
+  if (pics.length > 1 && matchMedia("(hover:hover)").matches)
+    $("slides").insertAdjacentHTML("afterend", `<button class="navbtn prev" aria-label="Previous photo">‹</button><button class="navbtn next" aria-label="Next photo">›</button>`);
+
+  const status = b.status === "sold"
+    ? `<div class="picker" style="text-align:center"><div class="lbl">This one found a home and raised</div><div class="amount">₹${inr(b.soldFor)}</div><p class="fine">for ${esc(S.ngoName)}. Thank you!</p></div>`
+    : `<div class="picker">
+        ${b.status === "reserved" ? `<p class="fine" style="color:var(--amber);font-weight:600;margin-bottom:8px">Someone has reserved this. Message anyway to join the waitlist.</p>` : ""}
+        <div class="lbl">I'd like to give</div>
+        <div class="amount">₹<input id="amt" inputmode="numeric" aria-label="Amount in rupees"></div>
+        <input type="range" id="rng" min="${S.minPrice}" max="${S.maxPrice}" step="10" aria-label="Choose amount">
+        <div class="presets" id="presets">${[...new Set([S.minPrice, 100, 200, 300, S.maxPrice])].filter(v => v >= S.minPrice && v <= S.maxPrice).map(v => `<button type="button" data-v="${v}">₹${v}</button>`).join("")}</div>
+      </div>
+      <div class="row2">
+        <input class="field" id="who" placeholder="Your name (optional)" autocomplete="name">
+        <button class="btn ghost" id="share" aria-label="Share this book">Share</button>
+      </div>
+      <button class="btn wa" id="take"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.8-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.2.5.1.6 0l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.7-.1 1.3Z"/></svg><span id="takeTxt"></span></button>
+      <p class="fine">Opens WhatsApp with a message to ${esc(S.owner)}. Payment goes directly to ${esc(S.ngoName)}.</p>`;
+
+  $("info").innerHTML = `
+    <h2 id="dTitle">${esc(shownTitle(b))}</h2>
+    <div class="by">${b.blind ? `Clue: <i>${esc(b.hint || "Trust the mystery.")}</i>` : "by " + esc(b.author)}</div>
+    <div class="tags"><span class="tag ${ED[b.edition].cls}">${ED[b.edition].label}</span>${b.genre ? `<span class="tag">${esc(b.genre)}</span>` : ""}<span class="tag">${COND[b.condition].icon} ${COND[b.condition].label}</span></div>
+    ${b.note && !b.blind ? `<blockquote class="quote"><span class="hand">${esc(S.owner.split(" ")[0])} says</span>${esc(b.note)}</blockquote>` : ""}
+    <div class="explain">
+      <div class="cond">${meter(b.condition)} <span><b>${COND[b.condition].label}:</b> ${COND[b.condition].desc}</span></div>
+      <div><b>${ED[b.edition].label}:</b> ${ED[b.edition].desc}</div>
+    </div>
+    ${status}`;
+
+  if (b.status !== "sold") {
+    $("rng").oninput = () => setAmt($("rng").value);
+    $("amt").oninput = () => setAmt($("amt").value, true);
+    $("amt").onblur = () => setAmt($("amt").value);
+    $("presets").onclick = e => e.target.dataset.v && setAmt(e.target.dataset.v);
+    $("take").onclick = take;
+    $("share").onclick = share;
+    try { $("who").value = localStorage.getItem("ptp-name") || ""; } catch {}
+    setAmt(Math.min(S.maxPrice, Math.max(S.minPrice, 100)));
+  }
+  if (push) history.replaceState(null, "", "#book=" + encodeURIComponent(b.id));
+  if (!dlg.open) dlg.showModal();
+  $("info").scrollTop = 0;
+}
+
+function setAmt(v, typing) {
+  v = parseInt(String(v).replace(/\D/g, "")) || 0;
+  const ok = Math.min(S.maxPrice, Math.max(S.minPrice, v));
+  if (!typing) $("amt").value = ok;
+  $("rng").value = ok;
+  $("presets").querySelectorAll("button").forEach(x => x.classList.toggle("on", +x.dataset.v === ok));
+  const valid = v >= S.minPrice && v <= S.maxPrice;
+  $("take").disabled = !valid;
+  $("takeTxt").textContent = valid ? `Take it for ₹${inr(ok)}` : `Choose ₹${S.minPrice} to ₹${S.maxPrice}`;
+  $("amt").style.width = Math.max(2, String(typing ? v || "" : ok).length) + "ch";
+}
+
+function take() {
+  const b = cur, amt = $("amt").value, who = $("who").value.trim();
+  try { localStorage.setItem("ptp-name", who); } catch {}
+  const lines = [
+    `Hi ${S.owner.split(" ")[0]}! 👋 I'd like to take a book from *Pass the Page*.`,
+    "",
+    b.blind ? `📦 *Blind date book* (clue: "${b.hint}")` : `📖 *${b.title}* by ${b.author}`,
+    `🏷️ ${ED[b.edition].label} · ${COND[b.condition].label} condition`,
+    `💰 I'm giving *₹${amt}* to ${S.ngoName}`,
+    `🔖 Book ID: ${b.id}`,
+    b.status === "reserved" ? "⏳ (It shows as reserved, please add me to the waitlist)" : "",
+    "",
+    who ? `My name is ${who}.` : "",
+    "How do I pay and pick it up?",
+  ].filter((l, i, a) => l !== "" || a[i - 1] !== "");
+  window.open(`https://wa.me/${S.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`, "_blank", "noopener");
+}
+
+async function share() {
+  const url = location.href.split("#")[0] + "#book=" + encodeURIComponent(cur.id);
+  const data = { title: "Pass the Page", text: `${shownTitle(cur)}: pay what you like, all of it goes to charity.`, url };
+  try {
+    if (navigator.share) await navigator.share(data);
+    else { await navigator.clipboard.writeText(url); toast("Link copied"); }
+  } catch {}
+}
+
+$("slides").addEventListener("scroll", e => {
+  const i = Math.round(e.target.scrollLeft / e.target.clientWidth);
+  $("dots").querySelectorAll("i").forEach((d, j) => d.classList.toggle("on", i === j));
+}, { passive: true });
+dlg.addEventListener("click", e => {
+  const s = $("slides");
+  if (e.target === dlg || e.target.closest("[data-close]")) dlg.close();
+  else if (e.target.closest(".navbtn")) s.scrollBy({ left: (e.target.closest(".prev") ? -1 : 1) * s.clientWidth, behavior: "smooth" });
+});
+dlg.addEventListener("close", () => history.replaceState(null, "", location.pathname + location.search));
+
+function surprise() {
+  const pool = BOOKS.filter(b => b.status === "available");
+  if (pool.length) openBook(pool[Math.floor(Math.random() * pool.length)].id);
+}
+
+/* ---------- boot ---------- */
+fetch("books.json", { cache: "no-cache" }).then(r => r.json()).then(d => {
+  S = d.site; BOOKS = d.books;
+  document.querySelectorAll("[data-s]").forEach(el => el.textContent = S[el.dataset.s]);
+  $("waFoot").href = `https://wa.me/${S.whatsapp}`;
+  if (S.ngoLink) $("ngoLink").innerHTML = `<a href="${esc(S.ngoLink)}" target="_blank" rel="noopener">Learn about the NGO →</a>`;
+
+  // impact
+  const sold = BOOKS.filter(b => b.status === "sold"), raised = sold.reduce((t, b) => t + (+b.soldFor || 0), 0);
+  $("iAvail").textContent = BOOKS.filter(b => b.status !== "sold").length;
+  $("iHome").textContent = sold.length;
+  $("iGoal").textContent = inr(S.goal);
+  const goalTile = $("iBar").closest(".goal");
+  if (!S.goal) goalTile.querySelector(".row span:last-child").remove(), goalTile.querySelector(".bar").remove();
+  let n = 0; const step = Math.max(1, Math.ceil(raised / 40));
+  const tick = () => { n = Math.min(raised, n + step); $("iRaised").textContent = inr(n); if (n < raised) requestAnimationFrame(tick); };
+  new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { tick(); $("iBar").style.width = Math.min(100, raised / (S.goal || 1) * 100) + "%"; o.disconnect(); } }).observe(goalTile);
+
+  // decorative shelf from real books
+  const spines = (BOOKS.length ? BOOKS : [{ title: "a" }]).slice(0, 9);
+  $("shelf").innerHTML = spines.map((b, i) => `<div class="spine${i === spines.length - 2 ? " tilt" : ""}" style="height:${62 + (hue(b.title) % 30)}%;background:hsl(${hue(b.title)} 42% ${b.blind ? 60 : 40}%);animation-delay:${i * 70}ms"></div>`).join("");
+
+  // condition guide
+  $("guideGrid").innerHTML = Object.values(COND).map(c => `<div class="tile"><h3>${meter(Object.keys(COND).find(k => COND[k] === c))} ${c.label}</h3><p>${c.desc}</p></div>`).join("")
+    + Object.values(ED).map(e => `<div class="tile"><h3><span class="tag ${e.cls}">${e.label}</span></h3><p>${e.desc}</p></div>`).join("");
+
+  // filter chips
+  const genres = [...new Set(BOOKS.filter(b => !b.blind && b.genre).map(b => b.genre))].sort();
+  const chips = [["all", "All"], ["original", "Originals"], ["first-copy", "First copies"], ...(BOOKS.some(b => b.blind) ? [["blind", "🎁 Blind dates"]] : []), ...genres.map(g => ["g:" + g, g]), ["sold", "Found a home"]];
+  $("chips").innerHTML = `<button class="chip surprise" id="surprise">🎲 Surprise me</button>` + chips.map(([v, l]) => `<button class="chip" data-f="${esc(v)}" aria-pressed="${v === "all"}">${esc(l)}</button>`).join("");
+  $("chips").onclick = e => {
+    const c = e.target.closest("[data-f]"); if (!c) return;
+    filter = c.dataset.f;
+    $("chips").querySelectorAll("[data-f]").forEach(x => x.setAttribute("aria-pressed", x === c));
+    render();
   };
-  const ED = { original: ["Original", "orig"], "first-copy": ["First copy", "copy"] };
-  const $ = id => document.getElementById(id);
-  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-  const hue = s => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 360, 7);
-  const meter = c => `<span class="meter">${[1, 2, 3, 4].map(i => `<i style="${i <= COND[c].level ? `background:${COND[c].color}` : ""}"></i>`).join("")}</span>`;
-  const tags = b => `<span class="tag ${ED[b.edition][1]}">${ED[b.edition][0]}</span>${b.genre ? `<span class="tag">${esc(b.genre)}</span>` : ""}`;
-
-  // site-wide text
-  document.querySelectorAll(".ngo").forEach(e => e.textContent = SITE.ngoName);
-  document.querySelectorAll(".min").forEach(e => e.textContent = SITE.minPrice);
-  document.querySelectorAll(".max").forEach(e => e.textContent = SITE.maxPrice);
-  $("sAvail").textContent = BOOKS.filter(b => !b.sold).length;
-  $("sOrig").textContent = BOOKS.filter(b => !b.sold && b.edition === "original").length;
-  $("legend").innerHTML = "<span>Condition:</span>" + Object.keys(COND).map(c => `<span class="cond">${meter(c)} ${COND[c].label}</span>`).join("");
-  const contact = SITE.whatsapp ? `<a href="https://wa.me/${SITE.whatsapp}">WhatsApp me</a>` : SITE.email ? `<a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>` : "";
-  $("contact").innerHTML = contact && `Questions? ${contact}`;
-
-  function render() {
-    const q = $("q").value.trim().toLowerCase(), ed = $("fEd").value, cond = $("fCond").value, showSold = $("fSold").checked;
-    const list = BOOKS.map((b, i) => ({ ...b, i })).filter(b =>
-      (showSold || !b.sold) &&
-      (!ed || b.edition === ed) &&
-      (!cond || COND[b.condition].level >= COND[cond].level) &&
-      (!q || [b.title, b.author, b.genre].join(" ").toLowerCase().includes(q)));
-    $("grid").innerHTML = list.length ? list.map(b => `
-      <article class="book${b.sold ? " sold" : ""}">
-        <div class="cover" style="background:linear-gradient(160deg,hsl(${hue(b.title)} 45% 42%),hsl(${(hue(b.title) + 40) % 360} 50% 24%))">
-          ${b.cover ? `<img src="${esc(b.cover)}" alt="" loading="lazy">` : `<div class="t">${esc(b.title)}</div><div class="a">${esc(b.author)}</div>`}
-          ${b.sold ? `<span class="ribbon">Found a home</span>` : ""}
-        </div>
-        <div class="body">
-          ${b.cover ? `<div><strong>${esc(b.title)}</strong><div style="font-size:13px;color:var(--muted)">${esc(b.author)}</div></div>` : ""}
-          <div class="tags">${tags(b)}</div>
-          <div class="cond">${meter(b.condition)} ${COND[b.condition].label} condition</div>
-          ${b.note ? `<p class="note">${esc(b.note)}</p>` : `<p class="note"></p>`}
-          <button class="btn" onclick="openBook(${b.i})" ${b.sold ? "disabled" : ""}>${b.sold ? "Sold" : `Take it · ₹${SITE.minPrice}–${SITE.maxPrice}`}</button>
-        </div>
-      </article>`).join("") : `<p class="empty">No books match that. Try loosening the filters.</p>`;
-  }
-  ["q", "fEd", "fCond", "fSold"].forEach(id => $(id).addEventListener("input", render));
-
-  // buy dialog
-  const dlg = $("dlg"), range = $("dRange");
-  range.min = SITE.minPrice; range.max = SITE.maxPrice;
-  let current;
-  const presets = [SITE.minPrice, 100, 200, 300, SITE.maxPrice].filter((v, i, a) => v >= SITE.minPrice && v <= SITE.maxPrice && a.indexOf(v) === i);
-  $("dChips").innerHTML = presets.map(v => `<button type="button" data-v="${v}">₹${v}</button>`).join("");
-  $("dChips").onclick = e => e.target.dataset.v && setAmt(+e.target.dataset.v);
-  range.oninput = () => setAmt(+range.value);
-  $("dPay").hidden = !SITE.upiId;
-  $("dUpi").textContent = SITE.upiId;
-
-  function setAmt(v) {
-    v = Math.min(SITE.maxPrice, Math.max(SITE.minPrice, Math.round(v)));
-    range.value = v; $("dAmt").textContent = v;
-    $("dChips").querySelectorAll("button").forEach(b => b.classList.toggle("on", +b.dataset.v === v));
-    const b = BOOKS[current];
-    if (SITE.upiId) {
-      const upi = `upi://pay?pa=${encodeURIComponent(SITE.upiId)}&pn=${encodeURIComponent(SITE.ngoName)}&am=${v}&cu=INR&tn=${encodeURIComponent("Pass the Page: " + b.title).slice(0, 80)}`;
-      $("qr").innerHTML = ""; new QRCode($("qr"), { text: upi, width: 180, height: 180 });
-      $("dUpiBtn").href = upi;
-    }
-    const msg = `Hi! I've paid ₹${v} to ${SITE.ngoName} for "${b.title}" by ${b.author}. Please keep it for me 🙂`;
-    $("dTell").href = SITE.whatsapp ? `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(msg)}`
-      : SITE.email ? `mailto:${SITE.email}?subject=${encodeURIComponent("Pass the Page: " + b.title)}&body=${encodeURIComponent(msg)}` : "#";
-  }
-
-  function openBook(i) {
-    current = i; const b = BOOKS[i];
-    $("dTitle").textContent = b.title;
-    $("dBy").textContent = "by " + b.author;
-    $("dTags").innerHTML = tags(b) + `<span class="cond" style="margin-left:4px">${meter(b.condition)} ${COND[b.condition].label}</span>`;
-    setAmt(100);
-    dlg.showModal();
-  }
-  dlg.addEventListener("click", e => e.target === dlg && dlg.close());
+  $("surprise").onclick = $("surpriseTop").onclick = surprise;
+  ["q", "fCond", "fSort"].forEach(id => $(id).addEventListener("input", render));
+  $("grid").onclick = e => { const c = e.target.closest(".book"); if (c) openBook(c.dataset.id); };
 
   render();
+  const m = location.hash.match(/book=([^&]+)/);
+  if (m) openBook(decodeURIComponent(m[1]), false);
+}).catch(() => $("grid").innerHTML = `<p class="empty">Couldn't load the books. Please refresh.</p>`);
 </script>
 </body>
 </html>
