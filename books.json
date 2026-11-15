@@ -32,15 +32,19 @@
     },
     {
       "id": "atomic-habits-b2",
-      "title": "Atomic Habits",
-      "author": "James Clear",
-      "genre": "Self-help",
-      "edition": "first-copy",
-      "condition": "good",
-      "note": "",
-      "photos": [],
+      "title": "The Girl On The Train",
+      "author": "Paula Hawkins",
+      "genre": "Fiction",
+      "edition": "original",
+      "condition": "worn",
+      "note": "The pages have turned yellow. The cover of the book has got some wrinkles. But looks good overall and the binding is still intact.",
+      "photos": [
+        "photos/atomic-habits-b2-mwhlknex.jpg",
+        "photos/atomic-habits-b2-mwhlkpci.jpg",
+        "photos/atomic-habits-b2-mwhlkr41.jpg"
+      ],
       "status": "available",
-      "mrp": 799
+      "mrp": 300
     },
     {
       "id": "hp-1-c3",
