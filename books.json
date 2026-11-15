@@ -13,6 +13,18 @@
   },
   "books": [
     {
+      "id": "milk-and-honey-us71",
+      "edition": "original",
+      "condition": "good",
+      "status": "available",
+      "photos": [],
+      "title": "Milk And Honey",
+      "author": "Rupi Kaur",
+      "genre": "Poetry",
+      "note": "Overall the book is in a good condition.",
+      "mrp": 499
+    },
+    {
       "id": "book-a95h",
       "edition": "original",
       "condition": "good",
