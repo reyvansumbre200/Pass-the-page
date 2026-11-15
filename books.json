@@ -13,6 +13,23 @@
   },
   "books": [
     {
+      "id": "book-eom0",
+      "edition": "first-copy",
+      "condition": "fair",
+      "status": "available",
+      "photos": [
+        "photos/book-eom0-mwho5ir2.jpg",
+        "photos/book-eom0-mwho5l76.jpg",
+        "photos/book-eom0-mwho5njy.jpg",
+        "photos/book-eom0-mwho5wez.jpg"
+      ],
+      "title": "Vyakti Ani Valli",
+      "author": "P.L. Deshpande",
+      "genre": "Fiction",
+      "note": "This is a first copy. Overall the binding, pages and the cover looks fine. The cover is a little crumbled from the side.",
+      "mrp": 150
+    },
+    {
       "id": "book-zvn9",
       "edition": "original",
       "condition": "fair",
