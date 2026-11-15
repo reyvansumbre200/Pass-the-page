@@ -13,6 +13,24 @@
   },
   "books": [
     {
+      "id": "book-glg8",
+      "edition": "original",
+      "condition": "good",
+      "status": "available",
+      "photos": [
+        "photos/book-glg8-mwhnt9yl.jpg",
+        "photos/book-glg8-mwhntcyk.jpg",
+        "photos/book-glg8-mwhntozy.jpg",
+        "photos/book-glg8-mwhntqui.jpg",
+        "photos/book-glg8-mwhnu2h0.jpg"
+      ],
+      "title": "Life Of Pi",
+      "author": "Yann Martel",
+      "genre": "Fiction",
+      "note": "The pages have turned yellow. Like really yellow. But the binding is good. Overall the book looks good.",
+      "mrp": 560
+    },
+    {
       "id": "book-49hi",
       "edition": "original",
       "condition": "good",
