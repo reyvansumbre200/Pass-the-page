@@ -48,15 +48,19 @@
     },
     {
       "id": "hp-1-c3",
-      "title": "Harry Potter and the Philosopher's Stone",
-      "author": "J.K. Rowling",
-      "genre": "Fantasy",
+      "title": "Eleanor Oliphant Is Completely Fine",
+      "author": "Gail Honeyman",
+      "genre": "Fiction",
       "edition": "original",
-      "condition": "fair",
-      "note": "Spine creased from too many re-reads. Pages clean.",
-      "photos": [],
+      "condition": "worn",
+      "note": "The pages have turned yellow, however it gives a nice look to the book. The binding is good. Oh and it smells like a book.",
+      "photos": [
+        "photos/hp-1-c3-mwhlrrol.jpg",
+        "photos/hp-1-c3-mwhlrtim.jpg",
+        "photos/hp-1-c3-mwhlrvcr.jpg"
+      ],
       "status": "available",
-      "mrp": 499
+      "mrp": 389
     },
     {
       "id": "wings-of-fire-d4",
