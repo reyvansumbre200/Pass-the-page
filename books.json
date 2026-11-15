@@ -130,15 +130,20 @@
     },
     {
       "id": "the-kite-runner-053",
-      "title": "The Kite Runner",
-      "author": "Khaled Hosseini",
-      "genre": "Fiction",
+      "title": "Pandeymonium - Piyush Pandey On Advertising",
+      "author": "Piyush Pandey",
+      "genre": "Memoir",
       "edition": "original",
-      "condition": "worn",
-      "note": "Barely read, no markings.",
-      "photos": [],
+      "condition": "good",
+      "note": "Overall the book is in good condition",
+      "photos": [
+        "photos/the-kite-runner-053-mwhmrui2.jpg",
+        "photos/the-kite-runner-053-mwhmrwh6.jpg",
+        "photos/the-kite-runner-053-mwhmryis.jpg",
+        "photos/the-kite-runner-053-mwhms09n.jpg"
+      ],
       "status": "available",
-      "mrp": 450
+      "mrp": 599
     },
     {
       "id": "the-immortals-of-meluha-074",
