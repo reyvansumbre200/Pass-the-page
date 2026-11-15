@@ -98,13 +98,18 @@
     },
     {
       "id": "sapiens-g7",
-      "title": "Sapiens",
-      "author": "Yuval Noah Harari",
-      "genre": "Non-fiction",
+      "title": "Yayati",
+      "author": "V. S. Khandekar",
+      "genre": "Fiction",
       "edition": "original",
       "condition": "good",
-      "note": "",
-      "photos": [],
+      "note": "Pages have turned yellow, but overall the book is good. Binding is intact. Cover is also good",
+      "photos": [
+        "photos/sapiens-g7-mwhmf7iw.jpg",
+        "photos/sapiens-g7-mwhmf9e1.jpg",
+        "photos/sapiens-g7-mwhmfbek.jpg",
+        "photos/sapiens-g7-mwhmfdbk.jpg"
+      ],
       "status": "available",
       "soldFor": 300,
       "mrp": 599
