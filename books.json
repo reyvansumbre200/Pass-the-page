@@ -13,6 +13,23 @@
   },
   "books": [
     {
+      "id": "book-zvn9",
+      "edition": "original",
+      "condition": "fair",
+      "status": "available",
+      "photos": [
+        "photos/book-zvn9-mwhnzgcy.jpg",
+        "photos/book-zvn9-mwhnzjd4.jpg",
+        "photos/book-zvn9-mwhnzldy.jpg",
+        "photos/book-zvn9-mwhnznd1.jpg"
+      ],
+      "title": "Mahagatha",
+      "author": "Satyarth Nayak",
+      "genre": "Mythology",
+      "note": "Overall the book is good. Just the yellow pages.",
+      "mrp": 599
+    },
+    {
       "id": "book-glg8",
       "edition": "original",
       "condition": "fair",
