@@ -14,15 +14,21 @@
   "books": [
     {
       "id": "alchemist-a1",
-      "title": "The Alchemist",
-      "author": "Paulo Coelho",
+      "title": "The Vegetarian",
+      "author": "Han Kang",
       "genre": "Fiction",
       "edition": "original",
-      "condition": "good",
-      "note": "Read it twice, still crisp. A short read that stays with you.",
-      "photos": [],
+      "condition": "fair",
+      "note": "No major damage, however book looks a little worn out",
+      "photos": [
+        "photos/alchemist-a1-mwhlaeld.jpg",
+        "photos/alchemist-a1-mwhlaglg.jpg",
+        "photos/alchemist-a1-mwhlainb.jpg",
+        "photos/alchemist-a1-mwhlakgs.jpg",
+        "photos/alchemist-a1-mwhlamkd.jpg"
+      ],
       "status": "available",
-      "mrp": 350
+      "mrp": 499
     },
     {
       "id": "atomic-habits-b2",
