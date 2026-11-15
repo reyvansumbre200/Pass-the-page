@@ -13,6 +13,21 @@
   },
   "books": [
     {
+      "id": "book-49hi",
+      "edition": "original",
+      "condition": "good",
+      "status": "available",
+      "photos": [
+        "photos/book-49hi-mwhnjt11.jpg",
+        "photos/book-49hi-mwhnjv3m.jpg"
+      ],
+      "title": "The Little Prince",
+      "author": "Antonie de Saint - Exupéry",
+      "genre": "Fiction",
+      "note": "The book is in a good condition.",
+      "mrp": 120
+    },
+    {
       "id": "milk-and-honey-us71",
       "edition": "original",
       "condition": "good",
