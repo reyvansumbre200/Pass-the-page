@@ -13,6 +13,18 @@
   },
   "books": [
     {
+      "id": "the-archer-2ha0",
+      "edition": "original",
+      "condition": "good",
+      "status": "available",
+      "photos": [],
+      "title": "The Archer",
+      "author": "Paulo Coelho",
+      "genre": "Fiction",
+      "note": "Overall the book is in a good condition. The cover has worn out from the side. Pages have turned a little yellow from the side.",
+      "mrp": 250
+    },
+    {
       "id": "alchemist-a1",
       "title": "The Vegetarian",
       "author": "Han Kang",
