@@ -13,6 +13,22 @@
   },
   "books": [
     {
+      "id": "book-a95h",
+      "edition": "original",
+      "condition": "good",
+      "status": "available",
+      "photos": [
+        "photos/book-a95h-mwhn8lic.jpg",
+        "photos/book-a95h-mwhn8o8w.jpg",
+        "photos/book-a95h-mwhn8qfk.jpg"
+      ],
+      "title": "Song Of Draupadi",
+      "author": "Ira Mukhoty",
+      "genre": "Fiction",
+      "note": "Overall the book is in a good condition. It's a hardcopy.",
+      "mrp": 699
+    },
+    {
       "id": "the-archer-2ha0",
       "edition": "original",
       "condition": "good",
