@@ -147,15 +147,18 @@
     },
     {
       "id": "the-immortals-of-meluha-074",
-      "title": "The Immortals of Meluha",
-      "author": "Amish Tripathi",
-      "genre": "Mythology",
+      "title": "Indigo Selected Stories",
+      "author": "Satyajit Ray",
+      "genre": "Fiction",
       "edition": "original",
-      "condition": "worse",
-      "note": "One of my all-time favourites.",
-      "photos": [],
+      "condition": "good",
+      "note": "Overall the book is in a good condition.",
+      "photos": [
+        "photos/the-immortals-of-meluha-074-mwhmwrct.jpg",
+        "photos/the-immortals-of-meluha-074-mwhmwvoa.jpg"
+      ],
       "status": "available",
-      "mrp": 350
+      "mrp": 399
     }
   ]
 }
