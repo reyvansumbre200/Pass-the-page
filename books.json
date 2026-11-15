@@ -81,28 +81,18 @@
       "mrp": 399
     },
     {
-      "id": "mystery-e5",
-      "title": "And Then There Were None",
-      "author": "Agatha Christie",
-      "genre": "Mystery",
-      "edition": "original",
-      "condition": "fair",
-      "note": "",
-      "photos": [],
-      "status": "available",
-      "blind": true,
-      "hint": "Ten strangers. One island. Nobody leaves.",
-      "mrp": 299
-    },
-    {
       "id": "wimpy-kid-f6",
-      "title": "Diary of a Wimpy Kid",
-      "author": "Jeff Kinney",
-      "genre": "Kids",
-      "edition": "first-copy",
-      "condition": "worse",
-      "note": "Cover torn at one corner, fully readable.",
-      "photos": [],
+      "title": "Heart Lamp",
+      "author": "Banu Mushtaq",
+      "genre": "Fiction",
+      "edition": "original",
+      "condition": "good",
+      "note": "In a good condition overall. Cover is a little worn and pages have turned a little yellow.",
+      "photos": [
+        "photos/wimpy-kid-f6-mwhm9cvo.jpg",
+        "photos/wimpy-kid-f6-mwhm9ehw.jpg",
+        "photos/wimpy-kid-f6-mwhm9ghp.jpg"
+      ],
       "status": "available",
       "mrp": 399
     },
