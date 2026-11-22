@@ -13,6 +13,24 @@
   },
   "books": [
     {
+      "id": "book-lllu",
+      "edition": "first-copy",
+      "condition": "good",
+      "status": "available",
+      "photos": [
+        "photos/book-lllu-mwrjvv08.jpg",
+        "photos/book-lllu-mwrjvx2f.jpg",
+        "photos/book-lllu-mwrjvz4c.jpg",
+        "photos/book-lllu-mwrjw16g.jpg",
+        "photos/book-lllu-mwrjw35a.jpg"
+      ],
+      "title": "Zero To One",
+      "author": "Peter Thiel",
+      "genre": "Non-fiction",
+      "note": "The book is overall in a good condition. The cover page has gotten folded a little.",
+      "mrp": 200
+    },
+    {
       "id": "book-akhi",
       "edition": "first-copy",
       "condition": "fair",
