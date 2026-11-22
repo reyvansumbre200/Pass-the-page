@@ -13,6 +13,25 @@
   },
   "books": [
     {
+      "id": "book-eqc1",
+      "edition": "first-copy",
+      "condition": "good",
+      "status": "available",
+      "photos": [
+        "photos/book-eqc1-mwrj9f5c.jpg",
+        "photos/book-eqc1-mwrj9h7t.jpg",
+        "photos/book-eqc1-mwrj9jcj.jpg",
+        "photos/book-eqc1-mwrj9l8x.jpg",
+        "photos/book-eqc1-mwrj9n34.jpg",
+        "photos/book-eqc1-mwrj9otp.jpg"
+      ],
+      "title": "The Psychology Of Money",
+      "author": "Morgan Housel",
+      "genre": "Finance",
+      "note": "The book overall is in a good condition. However some pages have turned yellow.",
+      "mrp": 200
+    },
+    {
       "id": "book-0no1",
       "edition": "original",
       "condition": "good",
