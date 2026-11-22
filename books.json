@@ -13,6 +13,18 @@
   },
   "books": [
     {
+      "id": "the-family-remains-j0nt",
+      "edition": "original",
+      "condition": "good",
+      "status": "available",
+      "photos": [],
+      "title": "The Family Remains",
+      "author": "Lisa Jewell",
+      "genre": "Fiction",
+      "note": "The book is overall in a good condition.",
+      "mrp": 412
+    },
+    {
       "id": "book-mzf3",
       "edition": "original",
       "condition": "good",
