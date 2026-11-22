@@ -13,6 +13,26 @@
   },
   "books": [
     {
+      "id": "book-00zp",
+      "edition": "first-copy",
+      "condition": "good",
+      "status": "available",
+      "photos": [
+        "photos/book-00zp-mwrk52ea.jpg",
+        "photos/book-00zp-mwrk54ho.jpg",
+        "photos/book-00zp-mwrk56dy.jpg",
+        "photos/book-00zp-mwrk58ks.jpg",
+        "photos/book-00zp-mwrk5a9y.jpg",
+        "photos/book-00zp-mwrk5c48.jpg",
+        "photos/book-00zp-mwrk5iv9.jpg"
+      ],
+      "title": "Steve Jobs",
+      "author": "Walter Isaacson",
+      "genre": "Biography",
+      "note": "The cover page of this book has worn out. The pages have turned yellow. The binding is a little off. While reading you need to be careful with this copy.",
+      "mrp": 200
+    },
+    {
       "id": "book-lllu",
       "edition": "first-copy",
       "condition": "good",
