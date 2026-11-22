@@ -13,6 +13,22 @@
   },
   "books": [
     {
+      "id": "book-0gli",
+      "edition": "first-copy",
+      "condition": "fair",
+      "status": "available",
+      "photos": [
+        "photos/book-0gli-mwrhi2eh.jpg",
+        "photos/book-0gli-mwrhi4mj.jpg",
+        "photos/book-0gli-mwrhi687.jpg"
+      ],
+      "title": "Five Point Something",
+      "author": "Chetan Bhagat",
+      "genre": "Fiction",
+      "note": "",
+      "mrp": 150
+    },
+    {
       "id": "book-2bm6",
       "edition": "first-copy",
       "condition": "good",
