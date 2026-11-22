@@ -13,6 +13,25 @@
   },
   "books": [
     {
+      "id": "book-0no1",
+      "edition": "original",
+      "condition": "good",
+      "status": "available",
+      "photos": [
+        "photos/book-0no1-mwrj4n80.jpg",
+        "photos/book-0no1-mwrj4p2r.jpg",
+        "photos/book-0no1-mwrj4qqm.jpg",
+        "photos/book-0no1-mwrj4sl6.jpg",
+        "photos/book-0no1-mwrj4um7.jpg",
+        "photos/book-0no1-mwrj4wjq.jpg"
+      ],
+      "title": "Butter",
+      "author": "Asako Yuzuki",
+      "genre": "Fiction",
+      "note": "Overall the book is in a good condition. However, the plastic of the book cover has come out a little.",
+      "mrp": 359
+    },
+    {
       "id": "book-baz6",
       "edition": "original",
       "condition": "fair",
