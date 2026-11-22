@@ -13,6 +13,23 @@
   },
   "books": [
     {
+      "id": "book-trct",
+      "edition": "original",
+      "condition": "good",
+      "status": "available",
+      "photos": [
+        "photos/book-trct-mwrkzehb.jpg",
+        "photos/book-trct-mwrkzgnd.jpg",
+        "photos/book-trct-mwrkzisc.jpg",
+        "photos/book-trct-mwrkzkmm.jpg"
+      ],
+      "title": "The Rules Of Life",
+      "author": "Richard Templar",
+      "genre": "Self-Help",
+      "note": "",
+      "mrp": 500
+    },
+    {
       "id": "book-bbpb",
       "edition": "original",
       "condition": "worn",
