@@ -13,6 +13,25 @@
   },
   "books": [
     {
+      "id": "book-mzf3",
+      "edition": "original",
+      "condition": "good",
+      "status": "available",
+      "photos": [
+        "photos/book-mzf3-mwri35fp.jpg",
+        "photos/book-mzf3-mwri37lm.jpg",
+        "photos/book-mzf3-mwri39qy.jpg",
+        "photos/book-mzf3-mwri3bbg.jpg",
+        "photos/book-mzf3-mwri3dpa.jpg",
+        "photos/book-mzf3-mwri3fcg.jpg"
+      ],
+      "title": "Gitanjali",
+      "author": "Rabindranath Tagore",
+      "genre": "Poetry",
+      "note": "The book is overall in a good condition. However, some pages have turned yellow",
+      "mrp": 150
+    },
+    {
       "id": "book-q2r4",
       "edition": "original",
       "condition": "good",
