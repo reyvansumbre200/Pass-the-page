@@ -13,6 +13,23 @@
   },
   "books": [
     {
+      "id": "book-2bm6",
+      "edition": "first-copy",
+      "condition": "good",
+      "status": "available",
+      "photos": [
+        "photos/book-2bm6-mwrhfluf.jpg",
+        "photos/book-2bm6-mwrhfnsz.jpg",
+        "photos/book-2bm6-mwrhfpv5.jpg",
+        "photos/book-2bm6-mwrhfxfk.jpg"
+      ],
+      "title": "Making India Awesome",
+      "author": "Chetan Bhagat",
+      "genre": "Non-fiction",
+      "note": "",
+      "mrp": 150
+    },
+    {
       "id": "book-eom0",
       "edition": "first-copy",
       "condition": "fair",
