@@ -13,6 +13,24 @@
   },
   "books": [
     {
+      "id": "book-q2r4",
+      "edition": "original",
+      "condition": "good",
+      "status": "available",
+      "photos": [
+        "photos/book-q2r4-mwrhx1xp.jpg",
+        "photos/book-q2r4-mwrhx3vz.jpg",
+        "photos/book-q2r4-mwrhx5so.jpg",
+        "photos/book-q2r4-mwrhx7rt.jpg",
+        "photos/book-q2r4-mwrhxa1m.jpg"
+      ],
+      "title": "When Breath becomes Air",
+      "author": "Paul Kalanithi",
+      "genre": "Non-fiction",
+      "note": "The book is in a good condition. However, the pages have turned yellow. Some markings have been done.",
+      "mrp": 599
+    },
+    {
       "id": "book-tx6x",
       "edition": "original",
       "condition": "good",
