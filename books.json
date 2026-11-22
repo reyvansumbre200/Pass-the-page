@@ -13,6 +13,23 @@
   },
   "books": [
     {
+      "id": "book-tx6x",
+      "edition": "original",
+      "condition": "good",
+      "status": "available",
+      "photos": [
+        "photos/book-tx6x-mwrhtdjw.jpg",
+        "photos/book-tx6x-mwrhtfhe.jpg",
+        "photos/book-tx6x-mwrhth8a.jpg",
+        "photos/book-tx6x-mwrhtj8c.jpg"
+      ],
+      "title": "The English Teacher",
+      "author": "R.K. Narayan",
+      "genre": "Fiction",
+      "note": "It's in a Good condition. Some pages have turned yellow.",
+      "mrp": 225
+    },
+    {
       "id": "book-pbx5",
       "edition": "first-copy",
       "condition": "worn",
@@ -21,7 +38,8 @@
         "photos/book-pbx5-mwrhqsmj.jpg",
         "photos/book-pbx5-mwrhqup8.jpg",
         "photos/book-pbx5-mwrhqwok.jpg",
-        "photos/book-pbx5-mwrhqyw8.jpg"
+        "photos/book-pbx5-mwrhqyw8.jpg",
+        "photos/book-pbx5-mwrhr0ds.jpg"
       ],
       "title": "2 ststes",
       "author": "Chetan Bhagat",
