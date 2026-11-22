@@ -13,6 +13,23 @@
   },
   "books": [
     {
+      "id": "book-1enu",
+      "edition": "original",
+      "condition": "fair",
+      "status": "available",
+      "photos": [
+        "photos/book-1enu-mwrjkyur.jpg",
+        "photos/book-1enu-mwrjl0yf.jpg",
+        "photos/book-1enu-mwrjl2u2.jpg",
+        "photos/book-1enu-mwrjl4rl.jpg"
+      ],
+      "title": "The Subtil Art Of Not Giving A F*ck",
+      "author": "Mark Manson",
+      "genre": "Non-fiction",
+      "note": "",
+      "mrp": 499
+    },
+    {
       "id": "book-iju1",
       "edition": "original",
       "condition": "fair",
