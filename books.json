@@ -13,6 +13,23 @@
   },
   "books": [
     {
+      "id": "book-r0yt",
+      "edition": "first-copy",
+      "condition": "worn",
+      "status": "available",
+      "photos": [
+        "photos/book-r0yt-mwrhkkf0.jpg",
+        "photos/book-r0yt-mwrhkmab.jpg",
+        "photos/book-r0yt-mwrhknz5.jpg",
+        "photos/book-r0yt-mwrhkpvy.jpg"
+      ],
+      "title": "Revolution 2020",
+      "author": "Chetan Bhagat",
+      "genre": "Fiction",
+      "note": "",
+      "mrp": 150
+    },
+    {
       "id": "book-0gli",
       "edition": "first-copy",
       "condition": "fair",
