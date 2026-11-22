@@ -13,6 +13,25 @@
   },
   "books": [
     {
+      "id": "book-sgdi",
+      "edition": "first-copy",
+      "condition": "good",
+      "status": "available",
+      "photos": [
+        "photos/book-sgdi-mwrko1sa.jpg",
+        "photos/book-sgdi-mwrko3sm.jpg",
+        "photos/book-sgdi-mwrko5vj.jpg",
+        "photos/book-sgdi-mwrko7qq.jpg",
+        "photos/book-sgdi-mwrko9o4.jpg",
+        "photos/book-sgdi-mwrkobka.jpg"
+      ],
+      "title": "Harry Potter And The Prisoner Of Azkaban",
+      "author": "J.K.Rowling",
+      "genre": "Fiction",
+      "note": "Overall the book is in a good condition. The binding looks a little off, you need to be careful around this copy.",
+      "mrp": 150
+    },
+    {
       "id": "book-iaij",
       "edition": "first-copy",
       "condition": "good",
