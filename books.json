@@ -13,6 +13,25 @@
   },
   "books": [
     {
+      "id": "book-vjlm",
+      "edition": "original",
+      "condition": "fair",
+      "status": "available",
+      "photos": [
+        "photos/book-vjlm-mwrinv5s.jpg",
+        "photos/book-vjlm-mwrinx41.jpg",
+        "photos/book-vjlm-mwrinz7k.jpg",
+        "photos/book-vjlm-mwrio1ar.jpg",
+        "photos/book-vjlm-mwrio39j.jpg",
+        "photos/book-vjlm-mwrio5dl.jpg"
+      ],
+      "title": "The Secret Of The Nagas",
+      "author": "Amish",
+      "genre": "Fiction",
+      "note": "The pages have turned yellow, but overall the book is in a good condition",
+      "mrp": 242
+    },
+    {
       "id": "book-kxw7",
       "edition": "original",
       "condition": "good",
