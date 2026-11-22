@@ -13,6 +13,25 @@
   },
   "books": [
     {
+      "id": "book-bbpb",
+      "edition": "original",
+      "condition": "worn",
+      "status": "available",
+      "photos": [
+        "photos/book-bbpb-mwrks3l2.jpg",
+        "photos/book-bbpb-mwrks5c0.jpg",
+        "photos/book-bbpb-mwrks75n.jpg",
+        "photos/book-bbpb-mwrks973.jpg",
+        "photos/book-bbpb-mwrksb0d.jpg",
+        "photos/book-bbpb-mwrkscyh.jpg"
+      ],
+      "title": "Till The Last Breath",
+      "author": "Durjoy Dutta",
+      "genre": "Fiction",
+      "note": "The book has worn out a little. Binding is a little off, pages have turned yellow",
+      "mrp": 100
+    },
+    {
       "id": "book-sgdi",
       "edition": "first-copy",
       "condition": "good",
