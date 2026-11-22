@@ -13,6 +13,23 @@
   },
   "books": [
     {
+      "id": "book-akhi",
+      "edition": "first-copy",
+      "condition": "fair",
+      "status": "available",
+      "photos": [
+        "photos/book-akhi-mwrjrqew.jpg",
+        "photos/book-akhi-mwrjrs23.jpg",
+        "photos/book-akhi-mwrjrtx0.jpg",
+        "photos/book-akhi-mwrjrwg0.jpg"
+      ],
+      "title": "The Monk Who Sold His Ferrari",
+      "author": "Robin Sharma",
+      "genre": "Self-Help",
+      "note": "The book is overall in a good condition. The pages have turned yellow.",
+      "mrp": 200
+    },
+    {
       "id": "book-1enu",
       "edition": "original",
       "condition": "fair",
