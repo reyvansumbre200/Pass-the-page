@@ -13,6 +13,23 @@
   },
   "books": [
     {
+      "id": "book-ohvk",
+      "edition": "original",
+      "condition": "good",
+      "status": "available",
+      "photos": [
+        "photos/book-ohvk-mwriheim.jpg",
+        "photos/book-ohvk-mwrihhlq.jpg",
+        "photos/book-ohvk-mwrihjlp.jpg",
+        "photos/book-ohvk-mwrihlfz.jpg",
+        "photos/book-ohvk-mwrihn7m.jpg"
+      ],
+      "title": "The Winner Stand Alone",
+      "author": "Paulo Coelho",
+      "genre": "Fiction",
+      "note": "The book is overall in a good condition"
+    },
+    {
       "id": "the-family-remains-j0nt",
       "edition": "original",
       "condition": "good",
