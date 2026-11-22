@@ -13,6 +13,27 @@
   },
   "books": [
     {
+      "id": "book-iju1",
+      "edition": "original",
+      "condition": "fair",
+      "status": "available",
+      "photos": [
+        "photos/book-iju1-mwrjgie4.jpg",
+        "photos/book-iju1-mwrjgkge.jpg",
+        "photos/book-iju1-mwrjgmn7.jpg",
+        "photos/book-iju1-mwrjgofa.jpg",
+        "photos/book-iju1-mwrjgqi2.jpg",
+        "photos/book-iju1-mwrjgsfy.jpg",
+        "photos/book-iju1-mwrjgubd.jpg",
+        "photos/book-iju1-mwrjgwfz.jpg"
+      ],
+      "title": "Atomic Habits",
+      "author": "James Clear",
+      "genre": "Non-fiction",
+      "note": "Overall the book is in a good condition. However some pages have turned yellow. The plastic of the cover page has come out a little and the cover looks a little worn out.",
+      "mrp": 750
+    },
+    {
       "id": "book-eqc1",
       "edition": "first-copy",
       "condition": "good",
