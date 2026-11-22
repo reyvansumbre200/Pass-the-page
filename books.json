@@ -13,6 +13,24 @@
   },
   "books": [
     {
+      "id": "book-kxw7",
+      "edition": "original",
+      "condition": "good",
+      "status": "available",
+      "photos": [
+        "photos/book-kxw7-mwrikvug.jpg",
+        "photos/book-kxw7-mwrikxje.jpg",
+        "photos/book-kxw7-mwrikzbb.jpg",
+        "photos/book-kxw7-mwril193.jpg",
+        "photos/book-kxw7-mwril38z.jpg"
+      ],
+      "title": "The Immortals Of Meluha",
+      "author": "Amish",
+      "genre": "Fiction",
+      "note": "",
+      "mrp": 259
+    },
+    {
       "id": "book-ohvk",
       "edition": "original",
       "condition": "good",
