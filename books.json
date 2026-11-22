@@ -13,6 +13,25 @@
   },
   "books": [
     {
+      "id": "book-baz6",
+      "edition": "original",
+      "condition": "fair",
+      "status": "available",
+      "photos": [
+        "photos/book-baz6-mwris6dw.jpg",
+        "photos/book-baz6-mwris8e6.jpg",
+        "photos/book-baz6-mwrisao8.jpg",
+        "photos/book-baz6-mwriscz6.jpg",
+        "photos/book-baz6-mwrisewh.jpg",
+        "photos/book-baz6-mwrisgu5.jpg"
+      ],
+      "title": "The Path Of The Vayuputras",
+      "author": "Amish",
+      "genre": "Fiction",
+      "note": "The book is in a good condition, however some pages have turned yellow and there are yellow spots on the pages, but readable.",
+      "mrp": 395
+    },
+    {
       "id": "book-vjlm",
       "edition": "original",
       "condition": "fair",
