@@ -13,6 +13,24 @@
   },
   "books": [
     {
+      "id": "book-iaij",
+      "edition": "first-copy",
+      "condition": "good",
+      "status": "available",
+      "photos": [
+        "photos/book-iaij-mwrkagdj.jpg",
+        "photos/book-iaij-mwrkaiff.jpg",
+        "photos/book-iaij-mwrkakhg.jpg",
+        "photos/book-iaij-mwrkam6n.jpg",
+        "photos/book-iaij-mwrkanyw.jpg"
+      ],
+      "title": "Chanakya Neeti",
+      "author": "Chanakya translated by B.K Chaturvedi",
+      "genre": "Self-Help",
+      "note": "The book overall is in a good condition. The cover page has worn out a little.",
+      "mrp": 150
+    },
+    {
       "id": "book-00zp",
       "edition": "first-copy",
       "condition": "worn",
