@@ -1,11 +1,8 @@
-/* Small, browser-native additions to the bookshelf. No external services. */
+/* Small, browser-native additions to the book catalogue. No external services. */
 let homesShown = 8;
-function renderHomeShelf() {
+function renderHomeGrid() {
   const sold = BOOKS.filter(b => b.status === 'sold');
-  const rows = [];
-  for (let i = 0; i < Math.min(homesShown, sold.length); i += currentShelfSize)
-    rows.push(`<div class="shelf-row">${sold.slice(i, Math.min(i + currentShelfSize, homesShown)).map(b => card(b, 'home')).join('')}</div>`);
-  $('homeShelf').innerHTML = rows.join('') || '<p class="fine">The first new home is still waiting. Yours could be next.</p>';
+  $('homeGrid').innerHTML = sold.length ? sold.slice(0, homesShown).map(card).join('') : '<p class="empty">The first new home is still waiting. Yours could be next.</p>';
   $('moreHomes').hidden = sold.length <= homesShown;
 }
 function validDonations(records) {
@@ -63,21 +60,4 @@ async function downloadShareCard(book) {
     toast('Share card saved. Use Share to send the book link too.');
   } catch { toast('Could not create the image. Please try again.'); }
   finally { button.disabled=false;button.textContent='Save share card'; }
-}
-
-// React to actual mouse travel, not boundary events caused by an expanding book.
-// Let the 550ms shelf layout transition settle before choosing another spine.
-function createShelfHoverHandler(reveal, now = () => performance.now(), isBlocked = () => false) {
-  let lastX, lastY, settleUntil = 0;
-  return event => {
-    if (isBlocked()) { lastX = event.clientX; lastY = event.clientY; settleUntil = now() + 600; return; }
-    if (event.pointerType !== 'mouse') return;
-    if (event.clientX === lastX && event.clientY === lastY) return;
-    lastX = event.clientX; lastY = event.clientY;
-    if (now() < settleUntil) return;
-    const book = event.target.closest('.shelf-book');
-    if (!book || book.classList.contains('revealed')) return;
-    reveal(book);
-    settleUntil = now() + 600;
-  };
 }

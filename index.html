@@ -28,7 +28,7 @@
   [hidden] { display: none !important; }
   html { scrollbar-gutter: stable; }
   html:has(#dlg[open]), body:has(#dlg[open]) { overflow: hidden; }
-  body:has(#dlg[open]) #grid, body:has(#dlg[open]) #homeShelf { pointer-events: none; }
+  body:has(#dlg[open]) #grid, body:has(#dlg[open]) #homeGrid { pointer-events: none; }
   #dlg, #dlg .dlg, #dlg .info { overscroll-behavior: contain; }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.6 Inter, system-ui, sans-serif; overflow-x: hidden; }
@@ -43,7 +43,7 @@
   .sec-head p { margin: 6px 0 0; color: var(--muted); }
 
   /* ---------- hero ---------- */
-  .hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; padding-block: 56px 32px; }
+  .hero { padding-block: 56px 40px; }
   .eyebrow { display: inline-flex; gap: 8px; align-items: center; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
   .hero h1 { font-size: clamp(52px, 9vw, 104px); font-weight: 800; letter-spacing: -.03em; margin: 12px 0 0; }
   .hero h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
@@ -56,15 +56,6 @@
   .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
   .btn.wa { background: var(--wa); color: #fff; }
   .btn:disabled { background: var(--line); color: var(--muted); cursor: not-allowed; }
-
-  /* stacked spines illustration */
-  .shelf { position: relative; height: 360px; display: flex; align-items: flex-end; justify-content: center; gap: 6px; padding-bottom: 14px; }
-  .shelf::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 14px; border-radius: 4px; background: linear-gradient(var(--kraft), color-mix(in srgb, var(--kraft) 70%, #000)); box-shadow: 0 10px 20px rgb(0 0 0 / .15); }
-  .spine { width: 44px; border-radius: 4px 4px 2px 2px; position: relative; box-shadow: inset -6px 0 10px rgb(0 0 0 / .18), inset 3px 0 0 rgb(255 255 255 / .15); transform-origin: bottom center; animation: rise .7s cubic-bezier(.2, .8, .2, 1.2) backwards; }
-  .spine::before, .spine::after { content: ""; position: absolute; left: 8px; right: 8px; height: 2px; background: rgb(255 255 255 / .35); }
-  .spine::before { top: 18px; } .spine::after { bottom: 18px; }
-  .spine.tilt { transform: rotate(-8deg); margin-right: 14px; }
-  @keyframes rise { from { transform: translateY(40px) scaleY(.6); opacity: 0; } }
 
   /* impact */
   .impact { display: grid; grid-template-columns: repeat(3, 1fr) 2fr; gap: 14px; }
@@ -102,13 +93,13 @@
   /* grid */
   .count { color: var(--muted); font-size: 14px; margin: 20px 0 0; }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 24px; padding-block: 16px 24px; }
-  .book { all: unset; cursor: pointer; display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform .18s, box-shadow .18s; animation: fade .4s backwards; }
-  .book:hover { transform: translateY(-4px) rotate(-.3deg); box-shadow: 0 14px 40px rgb(42 33 24 / .16); }
+  .book { all: unset; cursor: pointer; display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); min-width: 0; transition: border-color .18s, box-shadow .18s; }
+  @media (hover: hover) { .book:hover { border-color: var(--accent); box-shadow: 0 6px 20px rgb(42 33 24 / .12); } }
   .book:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-  .book.sold { opacity: .6; }
+  .book.sold .cover { filter: saturate(.7); }
   @keyframes fade { from { opacity: 0; transform: translateY(10px); } }
   .cover { aspect-ratio: 3/4; position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 18px 18px 18px 26px; color: #fff; overflow: hidden; }
-  .cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: var(--soft); }
   .cover.gen::before { content: ""; position: absolute; left: 12px; top: 0; bottom: 0; width: 3px; background: rgb(255 255 255 / .25); }
   .cover.gen::after { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 80% at 80% 0%, rgb(255 255 255 / .18), transparent 60%); }
   .cover .t { font-family: Fraunces, serif; font-weight: 800; font-size: clamp(18px, 2.2vw, 23px); line-height: 1.1; position: relative; z-index: 1; }
@@ -122,7 +113,7 @@
   .badge.res { background: var(--amber); color: #fff; }
   .badge.photos { top: auto; bottom: 12px; background: rgb(0 0 0 / .55); color: #fff; letter-spacing: 0; text-transform: none; }
   .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-  .body .ttl { font-weight: 600; line-height: 1.3; }
+  .body .ttl { overflow-wrap: anywhere; font-weight: 600; line-height: 1.3; }
   .body .au { font-size: 13px; color: var(--muted); }
   .tags { display: flex; gap: 6px; flex-wrap: wrap; }
   .tag { font-size: 12px; font-weight: 600; padding: 4px 9px; border-radius: 99px; border: 1px solid var(--line); }
@@ -131,7 +122,7 @@
   .cond { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
   .meter { display: inline-flex; gap: 3px; }
   .meter i { width: 16px; height: 6px; border-radius: 3px; background: var(--line); }
-  .price-hint { margin-top: auto; display: flex; justify-content: space-between; align-items: center; font-size: 14px; padding-top: 10px; border-top: 1px dashed var(--line); }
+  .price-hint { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; justify-content: space-between; align-items: center; font-size: 14px; padding-top: 10px; border-top: 1px dashed var(--line); }
   .price-hint b { font-family: Fraunces, serif; font-size: 18px; }
   .price-hint .go { color: var(--accent); font-weight: 600; }
   .mrp { font-size: 12px; color: var(--muted); }
@@ -186,7 +177,7 @@
   .slides { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; height: 100%; scrollbar-width: none; }
   .slides::-webkit-scrollbar { display: none; }
   .slides > * { flex: 0 0 100%; scroll-snap-align: center; height: 100%; }
-  .slides img { width: 100%; height: 100%; object-fit: cover; }
+  .slides img { width: 100%; height: 100%; object-fit: contain; }
   .slides .cover { border-radius: 0; }
   .dots { position: absolute; bottom: 12px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; }
   .dots i { width: 7px; height: 7px; border-radius: 50%; background: rgb(255 255 255 / .5); transition: .2s; }
@@ -224,8 +215,6 @@
   /* ---------- tablet & phone ---------- */
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; padding-top: 36px; }
-    .shelf { height: 170px; order: -1; }
-    .spine { width: 32px; }
     .impact { grid-template-columns: repeat(3, 1fr); }
     .impact .goal { grid-column: 1 / -1; }
   }
@@ -306,53 +295,6 @@
   }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-  /* The catalogue is a bookcase: spines at rest, a cover when selected. */
-  #grid { display: block; padding: 0 0 28px; }
-  .shelf-instructions { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 20px; margin: 20px 0 8px; }
-  .shelf-instructions p { margin: 0; font-size: 14px; color: var(--muted); }
-  .touch-hint { display: none; }
-  .shelf-row { position: relative; display: flex; align-items: flex-end; gap: 12px; min-height: 390px; padding: 26px 28px 110px; margin-bottom: 24px; isolation: isolate; border-radius: 8px 8px 3px 3px; background: linear-gradient(180deg, rgb(105 65 32 / .04), rgb(105 65 32 / .13)); box-shadow: inset 0 6px 18px rgb(64 39 18 / .08); }
-  .shelf-row::after { content: ''; position: absolute; left: 0; right: 0; bottom: 98px; height: 15px; z-index: -1; border-radius: 2px 2px 4px 4px; background: repeating-linear-gradient(1deg, transparent 0 3px, rgb(67 36 12 / .08) 4px 5px), linear-gradient(#cda675, #a77949); border-top: 3px solid #e3c39b; box-shadow: 0 9px 14px rgb(54 29 10 / .18); }
-  .shelf-book { position: relative; flex: 1 1 0; min-width: 0; max-width: 92px; height: var(--book-height); transition: flex-basis .55s cubic-bezier(.22,.7,.2,1), max-width .55s cubic-bezier(.22,.7,.2,1); }
-  .shelf-book.revealed { flex: 0 0 218px; max-width: 218px; z-index: 2; }
-  .book-toggle { display: block; position: relative; width: 100%; height: 100%; border: 0; padding: 0; background: transparent; cursor: pointer; perspective: 1000px; text-align: left; border-radius: 4px; }
-  .book-object { pointer-events: none; display: block; position: absolute; inset: 0; transform-style: preserve-3d; }
-  .book-spine { display: flex; position: absolute; inset: 0; flex-direction: column; align-items: center; gap: 14px; padding: 16px 8px; border-radius: 4px 3px 2px 2px; color: #fff8e8; background: linear-gradient(90deg, rgb(0 0 0 / .2), transparent 18%, rgb(255 255 255 / .1) 35%, transparent 70%, rgb(0 0 0 / .3)), hsl(var(--book-hue) 33% 29%); box-shadow: 3px 2px 4px rgb(0 0 0 / .22), inset 2px 0 rgb(255 255 255 / .2); transform-origin: right center; backface-visibility: hidden; transition: transform .55s, opacity .3s; }
-  .spine-title { writing-mode: vertical-rl; font: 600 18px/1.1 Fraunces, Georgia, serif; max-height: calc(100% - 30px); overflow: hidden; text-overflow: ellipsis; }
-  .spine-author { display: none; }
-  .spine-mark { margin-top: auto; white-space: nowrap; font-size: 10px; letter-spacing: .05em; border-top: 1px solid rgb(255 255 255 / .4); padding-top: 8px; }
-  .book-front { display: block; position: absolute; inset: 0; transform-origin: left center; transform: rotateY(88deg); opacity: 0; backface-visibility: hidden; transition: transform .55s cubic-bezier(.22,.7,.2,1), opacity .25s; border-radius: 3px 6px 6px 3px; overflow: hidden; box-shadow: 6px 5px 0 -2px #e5dccb, 9px 8px 0 -4px #b5a48c, 14px 10px 18px rgb(0 0 0 / .2); }
-  .book-front .cover { width: 100%; height: 100%; aspect-ratio: auto; }
-  .book-front .cover img { object-fit: contain; background: var(--soft); }
-  .shelf-book.revealed .book-spine { transform: rotateY(-90deg); opacity: 0; }
-  .shelf-book.revealed .book-front { transform: rotateY(-8deg); opacity: 1; }
-  .book-caption { position: absolute; top: calc(100% + 24px); left: 0; width: 100%; opacity: 0; visibility: hidden; transition: opacity .2s .2s; }
-  .revealed .book-caption { opacity: 1; visibility: visible; }
-  .shelf-title { font-weight: 600; font-size: 14px; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .shelf-meta { font-size: 12px; color: var(--muted); margin: 2px 0; }
-  .book-details { display: block; min-height: 44px; padding: 6px 0; border: 0; background: transparent; color: var(--accent); font-size: 14px; font-weight: 600; text-align: left; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
-  @media (hover: none) { .hover-hint { display: none; } .touch-hint { display: inline; } }
-  @media (max-width: 600px) {
-    .shelf-row { gap: 9px; padding-inline: 14px; min-height: 375px; }
-    .shelf-book { max-width: 76px; min-width: 44px; }
-    .shelf-book.revealed { flex-basis: min(180px, calc(100% - 106px)); max-width: min(180px, calc(100% - 106px)); }
-    .spine-title { font-size: 16px; }
-    .book-spine { padding-inline: 4px; }
-    .book-front .cover .t { font-size: 21px; }
-    .shelf-instructions { gap: 8px; }
-    .shelf-meta { font-size: 11px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .shelf-book, .book-spine, .book-front, .book-caption { transition: none; }
-    .shelf-book.revealed .book-front { transform: none; }
-  }
-
-  .book-object { transform: translateY(0) translateZ(0); transition: transform .28s ease .28s; }
-  .revealed .book-object { transform: translateY(-10px) translateZ(24px); transition-delay: 0s; }
-  .revealed .book-front, .revealed .book-spine { transition-delay: .16s; }
-  .mystery-book.revealed .tag-card { animation: clue-unfold .65s .2s both; }
-  @keyframes clue-unfold { from { opacity: 0; transform: rotate(-12deg) translateY(16px); } to { opacity: 1; transform: rotate(0) translateY(0); } }
-  .home-bookmark { position: absolute; top: 0; right: 12px; padding: 12px 9px 20px; background: #315f43; color: white; font-size: 12px; font-weight: 600; clip-path: polygon(0 0,100% 0,100% 100%,50% 88%,0 100%); }
   .personal-note { position: relative; margin: 8px 0; padding: 24px 20px 16px; border: 1px solid var(--line); border-radius: 2px 8px 8px 2px; background: var(--paper); color: var(--ink); font: 24px/1.4 Caveat, cursive; box-shadow: 2px 4px 0 var(--soft); }
   .personal-note::before { content: ''; position: absolute; top: -7px; left: 24px; height: 14px; width: 52px; background: color-mix(in srgb, var(--kraft) 45%, transparent); transform: rotate(-4deg); }
   .note-label { display: block; margin-bottom: 8px; font: 13px/1.5 Inter, sans-serif; color: var(--muted); }
@@ -367,7 +309,7 @@
   .share-actions { border-top: 1px solid var(--line); padding-top: 16px; }
   .share-actions .fine { text-align: left; margin-top: 8px; }
   @media(max-width:600px) { .donation-totals { grid-template-columns: 1fr; gap: 8px; } .donation-totals p { padding: 12px 18px; } }
-  @media(prefers-reduced-motion:reduce) { .book-object, .revealed .book-object { transform: none; transition: none; } .mystery-book.revealed .tag-card { animation: none; } }
+
 </style>
 </head>
 <body>
@@ -383,12 +325,11 @@
     <h1>Pass the <em>Page</em></h1>
     <p class="lede">Books I've loved, now looking for new shelves. Pay anything from <strong>₹<span data-s="minPrice"></span> to ₹<span data-s="maxPrice"></span></strong>, and every single rupee goes to <strong data-s="ngoName"></strong>.</p>
     <div class="cta">
-      <a class="btn" href="#books">Browse the shelf</a>
+      <a class="btn" href="#books">Browse the books</a>
       <button class="btn ghost" id="surpriseTop">🎲 Surprise me</button>
     </div>
     <a class="cause-note" href="#cause">A new chapter for a book. A little help against hunger.</a>
   </div>
-  <div class="shelf" id="shelf" aria-hidden="true"></div>
 </header>
 
 <div class="wrap impact" aria-label="Impact so far">
@@ -440,14 +381,14 @@
 
 <main class="wrap" id="catalogue">
   <div class="sec-head catalogue-heading"><div><h2>Find your next read</h2><p>A familiar favourite, a new discovery, or a little mystery.</p></div></div>
-  <div class="shelf-instructions"><p class="count" id="count" aria-live="polite"></p><p><span class="hover-hint">Hover over a spine to take a peek.</span><span class="touch-hint">Tap a spine to take a peek.</span> Select “View book” for details.</p></div>
-  <div class="grid" id="grid"><p class="empty">Loading the shelf…</p></div>
+  <p class="count" id="count" aria-live="polite"></p>
+  <div class="grid" id="grid"><p class="empty">Loading the books…</p></div>
   <div class="more"><button class="btn ghost" id="more" hidden>Show more books</button></div>
 </main>
 
 <section class="wrap" id="newHomes" aria-labelledby="homesTitle">
   <div class="sec-head"><div><h2 id="homesTitle">Found new homes</h2><p>The stories that have already started their next chapter.</p></div></div>
-  <div id="homeShelf"></div>
+  <div class="grid" id="homeGrid"></div>
   <button class="btn ghost" id="moreHomes" hidden>Show more adopted books</button>
 </section>
 <section class="wrap" id="guide">
@@ -540,37 +481,26 @@ const genCover = b => b.blind
   : `<div class="cover gen" style="background:linear-gradient(160deg,hsl(${hue(b.title)} 42% 42%),hsl(${(hue(b.title) + 40) % 360} 48% 22%))"><div class="t">${esc(b.title)}</div><div class="a">${esc(b.author)}</div></div>`;
 const shownTitle = b => b.blind ? "Blind date with a book" : b.title;
 
-function card(b, prefix = "preview") {
-  const title = shownTitle(b), color = hue(b.blind ? 'wrapped mystery' : b.title);
+function card(b) {
   const photo = !b.blind && b.photos?.[0];
-  const cover = photo ? `<div class="cover"><img src="${esc(photo)}" alt="" loading="lazy"></div>` : genCover(b);
-  const status = b.status === 'reserved' ? 'Reserved · Join the waitlist' : b.status === 'sold' ? 'Found a home' : ED[b.edition].label;
-  return `<article class="shelf-book${b.blind ? ' mystery-book' : ''}" data-id="${esc(b.id)}" style="--book-hue:${color};--book-height:${220 + color % 35}px">
-    <button class="book-toggle" aria-expanded="false" aria-controls="${prefix}-${esc(b.id)}" aria-label="Reveal ${esc(title)}">
-      <span class="book-object" aria-hidden="true">
-        <span class="book-spine"><span class="spine-title">${esc(title)}</span><span class="spine-author">${esc(b.blind ? 'A little mystery' : b.author)}</span><span class="spine-mark">${b.blind ? '?' : 'P / P'}</span></span>
-        <span class="book-front">${cover}${b.status === "sold" ? `<span class="home-bookmark">Raised ₹${inr(b.soldFor)}</span>` : ""}</span>
-      </span>
-    </button>
-    <div class="book-caption" id="${prefix}-${esc(b.id)}" inert>
-      <p class="shelf-title">${esc(title)}</p>
-      <p class="shelf-meta">${esc(status)} · ${COND[b.condition].label}</p>
-      <button class="book-details" tabindex="-1">${b.status === 'sold' ? `Raised ₹${inr(b.soldFor)} · View book` : `View book · ₹${S.minPrice}–₹${S.maxPrice}`}</button>
+  const status = b.status === 'sold' ? '<span class="badge">Found a home</span>' : b.status === 'reserved' ? '<span class="badge res">Reserved</span>' : '';
+  const cover = photo ? `<div class="cover"><img src="${esc(photo)}" alt="" loading="lazy">${status}</div>` : genCover(b).replace(/<\/div>$/, status + '</div>');
+  return `<button type="button" class="book${b.status === 'sold' ? ' sold' : ''}" data-id="${esc(b.id)}" aria-label="View ${esc(shownTitle(b))}">
+    ${cover}
+    <div class="body">
+      <div><div class="ttl">${esc(shownTitle(b))}</div><div class="au">${esc(b.blind ? (b.genre || 'A little mystery') : b.author)}</div></div>
+      <div class="tags"><span class="tag ${ED[b.edition].cls}">${ED[b.edition].label}</span>${b.genre && !b.blind ? `<span class="tag">${esc(b.genre)}</span>` : ''}</div>
+      <div class="cond">${meter(b.condition)} ${COND[b.condition].label}</div>
+      ${b.mrp ? `<div class="mrp">MRP <s>₹${inr(b.mrp)}</s></div>` : ''}
+      <div class="price-hint">${b.status === 'sold' ? `<span>Raised <b>₹${inr(b.soldFor)}</b></span>` : `<span><b>₹${inr(S.minPrice)}</b>–₹${inr(S.maxPrice)}</span>`}<span class="go">View book</span></div>
     </div>
-  </article>`;
+  </button>`;
 }
 
-function shelfSize() { return window.innerWidth <= 600 ? 3 : window.innerWidth <= 900 ? 5 : 8; }
-let currentShelfSize = shelfSize();
-function revealBook(book) {
-  if ($("dlg").open) return;
-  document.querySelectorAll('.shelf-book').forEach(el => {
-    const active = el === book;
-    el.classList.toggle('revealed', active);
-    el.querySelector('.book-toggle').setAttribute('aria-expanded', String(active));
-    el.querySelector('.book-caption').inert = !active;
-    el.querySelector('.book-details').tabIndex = active ? 0 : -1;
-  });
+function handleBookClick(event) {
+  if (dlg.open) return;
+  const book = event.target.closest('.book');
+  if (book) openBook(book.dataset.id);
 }
 
 function render() {
@@ -587,9 +517,7 @@ function render() {
   $("more").hidden = remaining === 0;
   $("more").textContent = remaining ? `Show more books (${remaining} left)` : 'Show more books';
   list = list.slice(0, shown);
-  const rows = [];
-  for (let i = 0; i < list.length; i += currentShelfSize) rows.push(`<div class="shelf-row">${list.slice(i, i + currentShelfSize).map(b => card(b)).join('')}</div>`);
-  $("grid").innerHTML = rows.length ? rows.join('') : `<p class="empty">No books match. Try another search or filter.</p>`;
+  $("grid").innerHTML = list.length ? list.map(card).join('') : '<p class="empty">No books match. Try another search or filter.</p>';
 }
 
 /* ---------- book dialog ---------- */
@@ -615,10 +543,7 @@ function openBook(id, push = true) {
         <input type="range" id="rng" min="${S.minPrice}" max="${S.maxPrice}" step="10" aria-label="Choose amount">
         <div class="presets" id="presets">${[...new Set([S.minPrice, 100, 200, 300, S.maxPrice])].filter(v => v >= S.minPrice && v <= S.maxPrice).map(v => `<button type="button" data-v="${v}">₹${v}</button>`).join("")}</div>
       </div>
-      <div class="row2">
-        <input class="field" id="who" placeholder="Your name (optional)" autocomplete="name">
-
-      </div>
+      <input class="field" id="who" aria-label="Your name (optional)" placeholder="Your name (optional)" autocomplete="name">
       <button class="btn wa" id="take"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.8-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.2.5.1.6 0l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.7-.1 1.3Z"/></svg><span id="takeTxt"></span></button>
       <p class="fine">Opens WhatsApp with a message to ${esc(S.owner)}. You pay ${esc(S.owner)} directly; he donates the full book payment to ${esc(S.ngoName)}. He’ll share his payment details on WhatsApp.</p>`;
 
@@ -730,10 +655,6 @@ fetch("books.json", { cache: "no-cache" }).then(r => r.json()).then(d => {
   const tick = () => { n = Math.min(raised, n + step); $("iRaised").textContent = inr(n); if (n < raised) requestAnimationFrame(tick); };
   new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { tick(); $("iBar").style.width = Math.min(100, raised / (S.goal || 1) * 100) + "%"; o.disconnect(); } }).observe(goalTile);
 
-  // decorative shelf from real books
-  const spines = (BOOKS.length ? BOOKS : [{ title: "a" }]).slice(0, 9);
-  $("shelf").innerHTML = spines.map((b, i) => `<div class="spine${i === spines.length - 2 ? " tilt" : ""}" style="height:${62 + (hue(b.title) % 30)}%;background:hsl(${hue(b.title)} 42% ${b.blind ? 60 : 40}%);animation-delay:${i * 70}ms"></div>`).join("");
-
   // condition guide
   $("guideGrid").innerHTML = Object.values(COND).map(c => `<div class="tile"><h3>${meter(Object.keys(COND).find(k => COND[k] === c))} ${c.label}</h3><p>${c.desc}</p></div>`).join("")
     + Object.values(ED).map(e => `<div class="tile"><h3><span class="tag ${e.cls}">${e.label}</span></h3><p>${e.desc}</p></div>`).join("");
@@ -751,32 +672,13 @@ fetch("books.json", { cache: "no-cache" }).then(r => r.json()).then(d => {
   $("surprise").onclick = $("surpriseTop").onclick = surprise;
   ["q", "fCond", "fSort"].forEach(id => $(id).addEventListener("input", () => { shown = PAGE; render(); }));
   $("more").onclick = () => { shown += PAGE; render(); };
-  [$("grid"), $("homeShelf")].forEach(shelfRoot => {
-  shelfRoot.onclick = e => {
-    const book = e.target.closest('.shelf-book'); if (!book) return;
-    if (e.target.closest('.book-details')) openBook(book.dataset.id);
-    else if (e.target.closest('.book-toggle')) revealBook(book);
-  };
-  const hoverBook = createShelfHoverHandler(revealBook, () => performance.now(), () => dlg.open);
-  shelfRoot.addEventListener('pointermove', e => {
-    if (matchMedia('(hover: hover)').matches) hoverBook(e);
-  });
-  shelfRoot.addEventListener('focusin', e => {
-    const book = e.target.closest('.shelf-book'); if (book) revealBook(book);
-  });
-  shelfRoot.addEventListener('keydown', e => {
-    if (!dlg.open && e.key === 'Escape') { e.target.closest('.shelf-book')?.querySelector('.book-toggle').focus(); revealBook(null); }
-  });
-  });
-  document.addEventListener('pointerdown', e => { if (!e.target.closest('.shelf-book') && !dlg.open) revealBook(null); });
-  window.addEventListener('resize', () => {
-    const size = shelfSize(); if (size !== currentShelfSize) { currentShelfSize = size; render(); renderHomeShelf(); }
-  });
+  $("grid").onclick = handleBookClick;
+  $("homeGrid").onclick = handleBookClick;
 
   render();
-  renderHomeShelf();
+  renderHomeGrid();
   renderDonations();
-  $("moreHomes").onclick = () => { homesShown += 16; renderHomeShelf(); };
+  $("moreHomes").onclick = () => { homesShown += 16; renderHomeGrid(); };
   const m = location.hash.match(/book=([^&]+)/);
   if (m) openBook(decodeURIComponent(m[1]), false);
 }).catch(() => $("grid").innerHTML = `<p class="empty">Couldn't load the books. Please refresh.</p>`);

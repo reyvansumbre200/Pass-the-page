@@ -30,11 +30,11 @@ Repo **Settings → Pages**: Source *Deploy from a branch*, branch `main`, folde
 - `books.json`: all books and settings (the admin edits this for you)
 - `photos/`: book photos uploaded through the admin
 
-## Bookshelf extras
+## Catalogue extras
 
-- Hover over a spine, tap on mobile, or focus it with the keyboard to reveal the cover. Choose **View book** for the details.
+- Browse the book-card grid. Click, tap, or use Enter/Space on a card to open its details directly.
 - Existing book notes appear as handwritten notes. Mystery books keep titles, authors, photos and personal notes hidden in previews and share images.
-- Sold books appear on the **Found new homes** shelf with the amount raised.
+- Sold books appear on the **Found new homes** grid with the amount raised.
 - **Save share card** in a book's details downloads a PNG for WhatsApp or Instagram. **Share** sends the link to the book.
 - In admin **Site settings → Donation updates**, add completed transfers with their date, amount, optional note and public HTTPS receipt link. Publish normally. The public donation total comes only from these records; no transfer is inferred from a book sale. With no entries, the site says that no transfers have been recorded.
 
