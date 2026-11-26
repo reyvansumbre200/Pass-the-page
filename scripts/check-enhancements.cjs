@@ -87,3 +87,15 @@ assert(html.includes('[hidden] { display: none !important; }'));
 assert(!html.includes('createShelfHoverHandler'));
 assert(!html.includes('book-spine'));
 console.log('Passed: direct card opening, modal isolation, mystery detail privacy, sold-book state, price limits, pagination, search, condition filter and sorting.');
+
+vm.runInContext('setAmt(50)',context);
+assert(node('mealEquivalent').textContent.includes('2 nutritious meals'));
+vm.runInContext('setAmt(100)',context);
+assert(node('mealEquivalent').textContent.includes('4 nutritious meals'));
+vm.runInContext('setAmt(500)',context);
+assert(node('mealEquivalent').textContent.includes('20 nutritious meals'));
+vm.runInContext('setAmt(60)',context);
+assert(node('mealEquivalent').textContent.includes('2 nutritious meals'));
+vm.runInContext('setAmt(0,true)',context);
+assert(!node('mealEquivalent').textContent.includes('Could help fund'));
+console.log('Passed: ₹25 meal equivalents for minimum, maximum, non-multiple and invalid amounts.');

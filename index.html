@@ -310,6 +310,14 @@
   .share-actions .fine { text-align: left; margin-top: 8px; }
   @media(max-width:600px) { .donation-totals { grid-template-columns: 1fr; gap: 8px; } .donation-totals p { padding: 12px 18px; } }
 
+  .meal-callout { display: flex; align-items: center; gap: 24px; max-width: 700px; margin-top: 28px; padding: 22px 24px; border-radius: 16px; background: #244f39; color: #fff9ec; }
+  .meal-price { flex: none; font: 600 48px/1 Fraunces, Georgia, serif; }
+  .meal-price span { display: block; margin-top: 8px; font: 14px/1.5 Inter, sans-serif; }
+  .meal-callout strong { font-size: 18px; }
+  .meal-callout p { margin: 6px 0 10px; font-size: 15px; }
+  .meal-callout a { color: #e0ecd7; font-size: 12px; text-underline-offset: 3px; }
+  .meal-equivalent { margin: 12px 0 6px; padding: 10px 12px; border-radius: 8px; background: var(--soft); color: var(--ink); font-size: 14px; text-align: center; }
+  @media(max-width:480px) { .meal-callout { align-items: flex-start; flex-direction: column; gap: 16px; padding: 20px; } }
 </style>
 </head>
 <body>
@@ -328,6 +336,10 @@
       <a class="btn" href="#books">Browse the books</a>
       <button class="btn ghost" id="surpriseTop">🎲 Surprise me</button>
     </div>
+    <aside class="meal-callout" aria-label="The difference your contribution can make">
+      <div class="meal-price">₹25<span>one nutritious meal</span></div>
+      <div><strong>A small amount. A full plate.</strong><p>Your next read could help fund meals for someone who needs them.</p><a href="https://akshayachaitanya.org/donate/food-donation-online" target="_blank" rel="noopener noreferrer">Based on Akshaya Chaitanya’s ₹25-per-meal rate</a></div>
+    </aside>
     <a class="cause-note" href="#cause">A new chapter for a book. A little help against hunger.</a>
   </div>
 </header>
@@ -540,6 +552,7 @@ function openBook(id, push = true) {
         ${b.status === "reserved" ? `<p class="fine" style="color:var(--amber);font-weight:600;margin-bottom:8px">Someone has reserved this. Message anyway to join the waitlist.</p>` : ""}
         <div class="lbl">I'd like to give</div>
         <div class="amount">₹<input id="amt" inputmode="numeric" aria-label="Amount in rupees"></div>
+        <p class="meal-equivalent" id="mealEquivalent" role="status" aria-live="polite" aria-atomic="true"></p>
         <input type="range" id="rng" min="${S.minPrice}" max="${S.maxPrice}" step="10" aria-label="Choose amount">
         <div class="presets" id="presets">${[...new Set([S.minPrice, 100, 200, 300, S.maxPrice])].filter(v => v >= S.minPrice && v <= S.maxPrice).map(v => `<button type="button" data-v="${v}">₹${v}</button>`).join("")}</div>
       </div>
@@ -582,6 +595,10 @@ function setAmt(v, typing) {
   $("rng").value = ok;
   $("presets").querySelectorAll("button").forEach(x => x.classList.toggle("on", +x.dataset.v === ok));
   const valid = v >= S.minPrice && v <= S.maxPrice;
+  const meals = Math.floor(ok / 25);
+  $("mealEquivalent").textContent = valid
+    ? meals > 0 ? `Could help fund ${meals} nutritious meal${meals === 1 ? '' : 's'} at ₹25 per meal.` : 'Your contribution helps fund nutritious meals at ₹25 per meal.'
+    : 'Choose an amount within the price range to see its meal equivalent.';
   $("take").disabled = !valid;
   $("takeTxt").textContent = valid ? `Take it for ₹${inr(ok)}` : `Choose ₹${S.minPrice} to ₹${S.maxPrice}`;
   $("amt").style.width = Math.max(2, String(typing ? v || "" : ok).length) + "ch";
