@@ -138,6 +138,7 @@
       <div class="full"><label>About the NGO</label><textarea name="ngoAbout"></textarea></div>
       <div><label>Fundraising goal (₹, 0 to hide)</label><input name="goal" type="number" min="0"></div>
       <div class="grid2" style="gap:10px"><div><label>Min price ₹</label><input name="minPrice" type="number" min="1"></div><div><label>Max price ₹</label><input name="maxPrice" type="number" min="1"></div></div>
+      <div class="full"><h3>Donation updates</h3><p class="muted">Add completed transfers to the NGO. The public page totals these separately from book sales. Only link receipts you intend to make public.</p><div id="donationRows"></div><button class="btn" type="button" id="addDonation">Add completed donation</button></div>
     </form>
   </details>
 
@@ -232,6 +233,7 @@ async function load() {
   fillSite(); renderList();
 }
 async function publish() {
+  if (!$("fSite").reportValidity()) return;
   readSite();
   $("pubBtn").disabled = true; $("pubBtn").textContent = "Publishing…";
   try {
@@ -361,8 +363,22 @@ $("list").onchange = e => {
 
 /* ---------- site settings ---------- */
 const SF = $("fSite").elements, SITE_KEYS = ["owner", "whatsapp", "phone", "instagram", "ngoName", "ngoLink", "ngoAbout", "goal", "minPrice", "maxPrice"], NUM = ["goal", "minPrice", "maxPrice"];
-function fillSite() { SITE_KEYS.forEach(k => SF[k].value = data.site[k] ?? ""); }
+function fillSite() { SITE_KEYS.forEach(k => SF[k].value = data.site[k] ?? ""); renderDonationRows(); }
+function renderDonationRows() {
+  $("donationRows").innerHTML = (data.site.donations || []).map(d => donationRow(d)).join('');
+}
+function donationRow(d = {}) {
+  return `<fieldset class="donation-editor" style="border:1px solid var(--line);border-radius:12px;padding:16px;margin:0 0 16px"><legend>Completed donation</legend><div class="grid2">
+    <label>Date<input data-donation="date" type="date" required value="${esc(d.date || '')}"></label>
+    <label>Amount ₹<input data-donation="amount" type="number" required min="0.01" step="0.01" value="${esc(d.amount || '')}"></label>
+    <label class="full">Public receipt link (optional)<input data-donation="receipt" type="url" pattern="https://.*" placeholder="https://" value="${esc(d.receipt || '')}"></label>
+    <label class="full">Update note (optional)<textarea data-donation="note">${esc(d.note || '')}</textarea></label>
+    <button class="btn" type="button" data-remove-donation>Remove this update</button></div></fieldset>`;
+}
+$("addDonation").onclick = () => { $("donationRows").insertAdjacentHTML('beforeend', donationRow()); setDirty(); $("donationRows").lastElementChild.querySelector('input').focus(); };
+$("donationRows").onclick = e => { if(e.target.closest('[data-remove-donation]')) { e.target.closest('.donation-editor').remove(); setDirty(); } };
 function readSite() {
+  data.site.donations = [...$("donationRows").querySelectorAll('.donation-editor')].map(row => Object.fromEntries([...row.querySelectorAll('[data-donation]')].map(el => [el.dataset.donation, el.dataset.donation === 'amount' ? +el.value : el.value.trim()])));
   SITE_KEYS.forEach(k => data.site[k] = NUM.includes(k) ? +SF[k].value || 0 : k === "whatsapp" || k === "phone" ? SF[k].value.replace(/\D/g, "") : SF[k].value.trim());
   if (data.site.minPrice > data.site.maxPrice) [data.site.minPrice, data.site.maxPrice] = [data.site.maxPrice, data.site.minPrice];
 }

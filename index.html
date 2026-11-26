@@ -25,6 +25,11 @@
     :root { --paper: #1c1814; --card: #26201a; --ink: #f1e8da; --muted: #a8998a; --line: #3a3128; --soft: #2f2820; --accent: #e07a4f; --kraft: #a9855a; }
   }
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scrollbar-gutter: stable; }
+  html:has(#dlg[open]), body:has(#dlg[open]) { overflow: hidden; }
+  body:has(#dlg[open]) #grid, body:has(#dlg[open]) #homeShelf { pointer-events: none; }
+  #dlg, #dlg .dlg, #dlg .info { overscroll-behavior: contain; }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.6 Inter, system-ui, sans-serif; overflow-x: hidden; }
   h1, h2, h3 { font-family: Fraunces, Georgia, serif; line-height: 1.12; margin: 0; letter-spacing: -.01em; }
@@ -83,7 +88,11 @@
   .search { position: relative; }
   .search input { width: 100%; font: inherit; font-size: 16px; padding: 11px 14px 11px 40px; border-radius: 12px; border: 1px solid var(--line); background: var(--card); color: var(--ink); }
   .search svg { position: absolute; left: 13px; top: 50%; translate: 0 -50%; color: var(--muted); }
-  select { font: inherit; font-size: 15px; padding: 11px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--card); color: var(--ink); }
+  .select-field { position: relative; min-width: 0; }
+  .select-field select { appearance: none; -webkit-appearance: none; width: 100%; min-height: 46px; font: inherit; font-size: 15px; line-height: 1.4; padding: 11px 42px 11px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; }
+  .select-field > svg { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--muted); pointer-events: none; }
+  .select-field select:hover { border-color: var(--muted); }
+  .select-field:focus-within > svg { color: var(--accent); }
   .chips { grid-column: 1 / -1; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
   .chips::-webkit-scrollbar { display: none; }
   .chip { flex: none; font-size: 14px; padding: 7px 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--card); cursor: pointer; white-space: nowrap; }
@@ -204,7 +213,10 @@
   .field { font: inherit; font-size: 16px; width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); }
   .row2 { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
   .fine { font-size: 13px; color: var(--muted); text-align: center; margin: 0; }
-  .x { position: absolute; top: 14px; right: 14px; z-index: 5; width: 38px; height: 38px; border-radius: 50%; border: 0; background: rgb(0 0 0 / .45); color: #fff; font-size: 22px; cursor: pointer; line-height: 1; }
+  .x { position: absolute; top: 12px; right: 12px; z-index: 5; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border-radius: 12px; border: 1px solid var(--line); background: var(--card); color: var(--ink); box-shadow: 0 2px 8px rgb(0 0 0 / .08); cursor: pointer; }
+  .x svg { display: block; width: 20px; height: 20px; pointer-events: none; }
+  .x:hover { background: var(--soft); border-color: var(--muted); }
+  .x:active { transform: scale(.96); }
 
   .toast { position: fixed; left: 50%; bottom: 24px; translate: -50% 0; background: var(--ink); color: var(--paper); padding: 12px 18px; border-radius: 12px; font-size: 14px; z-index: 100; opacity: 0; transition: .25s; pointer-events: none; }
   .toast.show { opacity: 1; translate: -50% -6px; }
@@ -304,7 +316,7 @@
   .shelf-book { position: relative; flex: 1 1 0; min-width: 0; max-width: 92px; height: var(--book-height); transition: flex-basis .55s cubic-bezier(.22,.7,.2,1), max-width .55s cubic-bezier(.22,.7,.2,1); }
   .shelf-book.revealed { flex: 0 0 218px; max-width: 218px; z-index: 2; }
   .book-toggle { display: block; position: relative; width: 100%; height: 100%; border: 0; padding: 0; background: transparent; cursor: pointer; perspective: 1000px; text-align: left; border-radius: 4px; }
-  .book-object { display: block; position: absolute; inset: 0; transform-style: preserve-3d; }
+  .book-object { pointer-events: none; display: block; position: absolute; inset: 0; transform-style: preserve-3d; }
   .book-spine { display: flex; position: absolute; inset: 0; flex-direction: column; align-items: center; gap: 14px; padding: 16px 8px; border-radius: 4px 3px 2px 2px; color: #fff8e8; background: linear-gradient(90deg, rgb(0 0 0 / .2), transparent 18%, rgb(255 255 255 / .1) 35%, transparent 70%, rgb(0 0 0 / .3)), hsl(var(--book-hue) 33% 29%); box-shadow: 3px 2px 4px rgb(0 0 0 / .22), inset 2px 0 rgb(255 255 255 / .2); transform-origin: right center; backface-visibility: hidden; transition: transform .55s, opacity .3s; }
   .spine-title { writing-mode: vertical-rl; font: 600 18px/1.1 Fraunces, Georgia, serif; max-height: calc(100% - 30px); overflow: hidden; text-overflow: ellipsis; }
   .spine-author { display: none; }
@@ -334,6 +346,28 @@
     .shelf-book, .book-spine, .book-front, .book-caption { transition: none; }
     .shelf-book.revealed .book-front { transform: none; }
   }
+
+  .book-object { transform: translateY(0) translateZ(0); transition: transform .28s ease .28s; }
+  .revealed .book-object { transform: translateY(-10px) translateZ(24px); transition-delay: 0s; }
+  .revealed .book-front, .revealed .book-spine { transition-delay: .16s; }
+  .mystery-book.revealed .tag-card { animation: clue-unfold .65s .2s both; }
+  @keyframes clue-unfold { from { opacity: 0; transform: rotate(-12deg) translateY(16px); } to { opacity: 1; transform: rotate(0) translateY(0); } }
+  .home-bookmark { position: absolute; top: 0; right: 12px; padding: 12px 9px 20px; background: #315f43; color: white; font-size: 12px; font-weight: 600; clip-path: polygon(0 0,100% 0,100% 100%,50% 88%,0 100%); }
+  .personal-note { position: relative; margin: 8px 0; padding: 24px 20px 16px; border: 1px solid var(--line); border-radius: 2px 8px 8px 2px; background: var(--paper); color: var(--ink); font: 24px/1.4 Caveat, cursive; box-shadow: 2px 4px 0 var(--soft); }
+  .personal-note::before { content: ''; position: absolute; top: -7px; left: 24px; height: 14px; width: 52px; background: color-mix(in srgb, var(--kraft) 45%, transparent); transform: rotate(-4deg); }
+  .note-label { display: block; margin-bottom: 8px; font: 13px/1.5 Inter, sans-serif; color: var(--muted); }
+  .donation-totals { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 24px; }
+  .donation-totals p { margin: 0; padding: 22px; border-left: 3px solid var(--line); }
+  .donation-totals strong { display: block; font: 600 32px/1.3 Fraunces, serif; }
+  .donation-totals span { color: var(--muted); font-size: 14px; }
+  .donation-update { padding: 20px 0; border-top: 1px solid var(--line); }
+  .donation-update p { margin: 6px 0; max-width: 70ch; }
+  .donation-update time { color: var(--muted); font-size: 14px; }
+  .donation-update a { display: inline-block; padding-block: 8px; }
+  .share-actions { border-top: 1px solid var(--line); padding-top: 16px; }
+  .share-actions .fine { text-align: left; margin-top: 8px; }
+  @media(max-width:600px) { .donation-totals { grid-template-columns: 1fr; gap: 8px; } .donation-totals p { padding: 12px 18px; } }
+  @media(prefers-reduced-motion:reduce) { .book-object, .revealed .book-object { transform: none; transition: none; } .mystery-book.revealed .tag-card { animation: none; } }
 </style>
 </head>
 <body>
@@ -383,17 +417,23 @@
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input type="search" id="q" placeholder="Search title, author, genre" aria-label="Search books">
     </label>
-    <select id="fCond" aria-label="Condition">
+    <div class="select-field">
+      <select id="fCond" aria-label="Condition">
       <option value="">Any condition</option>
       <option value="good">Good</option>
       <option value="fair">Fair or better</option>
       <option value="worn">Worn or better</option>
     </select>
-    <select id="fSort" aria-label="Sort">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+    <div class="select-field">
+      <select id="fSort" aria-label="Sort">
       <option value="">Newest</option>
       <option value="az">A to Z</option>
       <option value="cond">Best condition</option>
     </select>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
     <div class="chips" id="chips" role="group" aria-label="Filter"></div>
   </div>
 </div>
@@ -405,6 +445,11 @@
   <div class="more"><button class="btn ghost" id="more" hidden>Show more books</button></div>
 </main>
 
+<section class="wrap" id="newHomes" aria-labelledby="homesTitle">
+  <div class="sec-head"><div><h2 id="homesTitle">Found new homes</h2><p>The stories that have already started their next chapter.</p></div></div>
+  <div id="homeShelf"></div>
+  <button class="btn ghost" id="moreHomes" hidden>Show more adopted books</button>
+</section>
 <section class="wrap" id="guide">
   <div class="sec-head"><div><h2>Know what you're getting</h2><p>Honest grading. If I'm unsure, I grade it lower.</p></div></div>
   <div class="guide" id="guideGrid"></div>
@@ -425,6 +470,11 @@
   </div>
 </section>
 
+<section class="wrap" id="donations" aria-labelledby="donationTitle">
+  <div class="sec-head"><div><h2 id="donationTitle">From books to meals</h2><p>Book payments collected and donations recorded by <span data-s="owner"></span>.</p></div></div>
+  <div class="donation-totals" id="donationTotals"></div>
+  <div id="donationUpdates"></div>
+</section>
 <section class="wrap" id="contact">
   <div class="sec-head"><div><h2>Say hi to <span data-s="owner"></span></h2><p>Questions about a book, pickup or the NGO? Reach out any way you like.</p></div></div>
   <div class="contact">
@@ -451,7 +501,7 @@
 </footer>
 
 <dialog id="dlg" aria-labelledby="dTitle">
-  <button class="x" aria-label="Close" data-close>×</button>
+  <button class="x" type="button" aria-label="Close book details" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
   <div class="dlg">
     <div class="gallery">
       <div class="slides" id="slides"></div>
@@ -463,6 +513,7 @@
 
 <div class="toast" id="toast" role="status"></div>
 
+<script src="enhancements.js"></script>
 <script>
 const COND = {
   good:  { label: "Good",  level: 4, color: "var(--green)",  icon: "✨", desc: "Clean pages, tight spine, barely any signs of reading." },
@@ -489,19 +540,19 @@ const genCover = b => b.blind
   : `<div class="cover gen" style="background:linear-gradient(160deg,hsl(${hue(b.title)} 42% 42%),hsl(${(hue(b.title) + 40) % 360} 48% 22%))"><div class="t">${esc(b.title)}</div><div class="a">${esc(b.author)}</div></div>`;
 const shownTitle = b => b.blind ? "Blind date with a book" : b.title;
 
-function card(b) {
+function card(b, prefix = "preview") {
   const title = shownTitle(b), color = hue(b.blind ? 'wrapped mystery' : b.title);
   const photo = !b.blind && b.photos?.[0];
   const cover = photo ? `<div class="cover"><img src="${esc(photo)}" alt="" loading="lazy"></div>` : genCover(b);
   const status = b.status === 'reserved' ? 'Reserved · Join the waitlist' : b.status === 'sold' ? 'Found a home' : ED[b.edition].label;
-  return `<article class="shelf-book" data-id="${esc(b.id)}" style="--book-hue:${color};--book-height:${220 + color % 35}px">
-    <button class="book-toggle" aria-expanded="false" aria-controls="preview-${esc(b.id)}" aria-label="Reveal ${esc(title)}">
+  return `<article class="shelf-book${b.blind ? ' mystery-book' : ''}" data-id="${esc(b.id)}" style="--book-hue:${color};--book-height:${220 + color % 35}px">
+    <button class="book-toggle" aria-expanded="false" aria-controls="${prefix}-${esc(b.id)}" aria-label="Reveal ${esc(title)}">
       <span class="book-object" aria-hidden="true">
         <span class="book-spine"><span class="spine-title">${esc(title)}</span><span class="spine-author">${esc(b.blind ? 'A little mystery' : b.author)}</span><span class="spine-mark">${b.blind ? '?' : 'P / P'}</span></span>
-        <span class="book-front">${cover}</span>
+        <span class="book-front">${cover}${b.status === "sold" ? `<span class="home-bookmark">Raised ₹${inr(b.soldFor)}</span>` : ""}</span>
       </span>
     </button>
-    <div class="book-caption" id="preview-${esc(b.id)}" inert>
+    <div class="book-caption" id="${prefix}-${esc(b.id)}" inert>
       <p class="shelf-title">${esc(title)}</p>
       <p class="shelf-meta">${esc(status)} · ${COND[b.condition].label}</p>
       <button class="book-details" tabindex="-1">${b.status === 'sold' ? `Raised ₹${inr(b.soldFor)} · View book` : `View book · ₹${S.minPrice}–₹${S.maxPrice}`}</button>
@@ -512,6 +563,7 @@ function card(b) {
 function shelfSize() { return window.innerWidth <= 600 ? 3 : window.innerWidth <= 900 ? 5 : 8; }
 let currentShelfSize = shelfSize();
 function revealBook(book) {
+  if ($("dlg").open) return;
   document.querySelectorAll('.shelf-book').forEach(el => {
     const active = el === book;
     el.classList.toggle('revealed', active);
@@ -531,11 +583,12 @@ function render() {
   if (sort === "az") list.sort((a, b) => shownTitle(a).localeCompare(shownTitle(b)));
   if (sort === "cond") list.sort((a, b) => COND[b.condition].level - COND[a.condition].level);
   $("count").textContent = `${list.length} book${list.length === 1 ? "" : "s"}`;
-  $("more").hidden = list.length <= shown;
-  $("more").textContent = `Show more books (${list.length - shown} left)`;
+  const remaining = Math.max(0, list.length - shown);
+  $("more").hidden = remaining === 0;
+  $("more").textContent = remaining ? `Show more books (${remaining} left)` : 'Show more books';
   list = list.slice(0, shown);
   const rows = [];
-  for (let i = 0; i < list.length; i += currentShelfSize) rows.push(`<div class="shelf-row">${list.slice(i, i + currentShelfSize).map(card).join('')}</div>`);
+  for (let i = 0; i < list.length; i += currentShelfSize) rows.push(`<div class="shelf-row">${list.slice(i, i + currentShelfSize).map(b => card(b)).join('')}</div>`);
   $("grid").innerHTML = rows.length ? rows.join('') : `<p class="empty">No books match. Try another search or filter.</p>`;
 }
 
@@ -564,7 +617,7 @@ function openBook(id, push = true) {
       </div>
       <div class="row2">
         <input class="field" id="who" placeholder="Your name (optional)" autocomplete="name">
-        <button class="btn ghost" id="share" aria-label="Share this book">Share</button>
+
       </div>
       <button class="btn wa" id="take"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.8-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.2.5.1.6 0l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.7-.1 1.3Z"/></svg><span id="takeTxt"></span></button>
       <p class="fine">Opens WhatsApp with a message to ${esc(S.owner)}. You pay ${esc(S.owner)} directly; he donates the full book payment to ${esc(S.ngoName)}. He’ll share his payment details on WhatsApp.</p>`;
@@ -573,13 +626,15 @@ function openBook(id, push = true) {
     <h2 id="dTitle">${esc(shownTitle(b))}</h2>
     <div class="by">${b.blind ? `Clue: <i>${esc(b.hint || "Trust the mystery.")}</i>` : "by " + esc(b.author)}</div>
     <div class="tags"><span class="tag ${ED[b.edition].cls}">${ED[b.edition].label}</span>${b.genre ? `<span class="tag">${esc(b.genre)}</span>` : ""}<span class="tag">${COND[b.condition].icon} ${COND[b.condition].label}</span></div>
-    ${b.note && !b.blind ? `<blockquote class="quote"><span class="hand">${esc(S.owner.split(" ")[0])} says</span>${esc(b.note)}</blockquote>` : ""}
+    ${b.note && !b.blind ? `<blockquote class="quote personal-note"><span class="note-label">A note from ${esc(S.owner.split(" ")[0])}</span>${esc(b.note)}</blockquote>` : ""}
     <div class="explain">
       <div class="cond">${meter(b.condition)} <span><b>${COND[b.condition].label}:</b> ${COND[b.condition].desc}</span></div>
       <div><b>${ED[b.edition].label}:</b> ${ED[b.edition].desc}</div>
       ${b.mrp ? `<div><b>MRP:</b> ₹${inr(b.mrp)} new. Here you pay what you like, from ₹${S.minPrice}.</div>` : ""}
     </div>
-    ${status}`;
+    ${status}<div class="share-actions"><button class="btn ghost" id="share" type="button">Share book link</button> <button class="btn ghost" id="saveCard" type="button">Save share card</button><p class="fine">Download an image for WhatsApp or Instagram.</p></div>`;
+  $("saveCard").onclick = () => downloadShareCard(b);
+  $("share").onclick = share;
 
   if (b.status !== "sold") {
     $("rng").oninput = () => setAmt($("rng").value);
@@ -587,7 +642,6 @@ function openBook(id, push = true) {
     $("amt").onblur = () => setAmt($("amt").value);
     $("presets").onclick = e => e.target.dataset.v && setAmt(e.target.dataset.v);
     $("take").onclick = take;
-    $("share").onclick = share;
     try { $("who").value = localStorage.getItem("ptp-name") || ""; } catch {}
     setAmt(Math.min(S.maxPrice, Math.max(S.minPrice, 100)));
   }
@@ -628,11 +682,11 @@ function take() {
 
 async function share() {
   const url = location.href.split("#")[0] + "#book=" + encodeURIComponent(cur.id);
-  const data = { title: "Pass the Page", text: `${shownTitle(cur)}: pay what you like, all of it goes to charity.`, url };
+  const data = { title: "Pass the Page", text: cur.status === "sold" ? `${shownTitle(cur)} found a home and raised ₹${inr(cur.soldFor)} for ${S.ngoName}.` : `${shownTitle(cur)}: pay what you like, supporting ${S.ngoName}.`, url };
   try {
     if (navigator.share) await navigator.share(data);
     else { await navigator.clipboard.writeText(url); toast("Link copied"); }
-  } catch {}
+  } catch (error) { if (error.name !== "AbortError") toast("Could not share. Copy the book URL from your address bar."); }
 }
 
 $("slides").addEventListener("scroll", e => {
@@ -671,7 +725,7 @@ fetch("books.json", { cache: "no-cache" }).then(r => r.json()).then(d => {
   $("iHome").textContent = sold.length;
   $("iGoal").textContent = inr(S.goal);
   const goalTile = $("iBar").closest(".goal");
-  if (!S.goal) goalTile.querySelector(".row span:last-child").remove(), goalTile.querySelector(".bar").remove();
+  if (!S.goal) goalTile.querySelector(".row span:last-child").hidden = true, goalTile.querySelector(".bar").hidden = true;
   let n = 0; const step = Math.max(1, Math.ceil(raised / 40));
   const tick = () => { n = Math.min(raised, n + step); $("iRaised").textContent = inr(n); if (n < raised) requestAnimationFrame(tick); };
   new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { tick(); $("iBar").style.width = Math.min(100, raised / (S.goal || 1) * 100) + "%"; o.disconnect(); } }).observe(goalTile);
@@ -697,28 +751,32 @@ fetch("books.json", { cache: "no-cache" }).then(r => r.json()).then(d => {
   $("surprise").onclick = $("surpriseTop").onclick = surprise;
   ["q", "fCond", "fSort"].forEach(id => $(id).addEventListener("input", () => { shown = PAGE; render(); }));
   $("more").onclick = () => { shown += PAGE; render(); };
-  $("grid").onclick = e => {
+  [$("grid"), $("homeShelf")].forEach(shelfRoot => {
+  shelfRoot.onclick = e => {
     const book = e.target.closest('.shelf-book'); if (!book) return;
     if (e.target.closest('.book-details')) openBook(book.dataset.id);
     else if (e.target.closest('.book-toggle')) revealBook(book);
   };
-  $("grid").addEventListener('pointerover', e => {
-    if (e.pointerType !== 'mouse' || !matchMedia('(hover: hover)').matches) return;
-    const book = e.target.closest('.shelf-book');
-    if (book && !book.contains(e.relatedTarget)) revealBook(book);
+  const hoverBook = createShelfHoverHandler(revealBook, () => performance.now(), () => dlg.open);
+  shelfRoot.addEventListener('pointermove', e => {
+    if (matchMedia('(hover: hover)').matches) hoverBook(e);
   });
-  $("grid").addEventListener('focusin', e => {
+  shelfRoot.addEventListener('focusin', e => {
     const book = e.target.closest('.shelf-book'); if (book) revealBook(book);
   });
-  $("grid").addEventListener('keydown', e => {
-    if (e.key === 'Escape') { e.target.closest('.shelf-book')?.querySelector('.book-toggle').focus(); revealBook(null); }
+  shelfRoot.addEventListener('keydown', e => {
+    if (!dlg.open && e.key === 'Escape') { e.target.closest('.shelf-book')?.querySelector('.book-toggle').focus(); revealBook(null); }
+  });
   });
   document.addEventListener('pointerdown', e => { if (!e.target.closest('.shelf-book') && !dlg.open) revealBook(null); });
   window.addEventListener('resize', () => {
-    const size = shelfSize(); if (size !== currentShelfSize) { currentShelfSize = size; render(); }
+    const size = shelfSize(); if (size !== currentShelfSize) { currentShelfSize = size; render(); renderHomeShelf(); }
   });
 
   render();
+  renderHomeShelf();
+  renderDonations();
+  $("moreHomes").onclick = () => { homesShown += 16; renderHomeShelf(); };
   const m = location.hash.match(/book=([^&]+)/);
   if (m) openBook(decodeURIComponent(m[1]), false);
 }).catch(() => $("grid").innerHTML = `<p class="empty">Couldn't load the books. Please refresh.</p>`);
