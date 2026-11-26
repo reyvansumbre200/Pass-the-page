@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pass the Page | Pay what you like, give to charity</title>
-<meta name="description" content="Pre-loved books from Reyvan's shelf. Pay anything from ₹50 to ₹500 and every rupee goes to charity.">
+<meta name="description" content="Pre-loved books from Reyvan's shelf. Pay anything from ₹50 to ₹500 and every rupee supports Akshaya Chaitanya’s food relief initiatives in Mumbai.">
 <meta property="og:title" content="Pass the Page">
-<meta property="og:description" content="Pre-loved books. Pay what you like. 100% goes to charity.">
+<meta property="og:description" content="Pre-loved books. Pay what you like. 100% supports Akshaya Chaitanya in Mumbai.">
 <meta name="theme-color" content="#f7f1e6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1c1814" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
@@ -156,11 +156,15 @@
 
   footer { border-top: 1px solid var(--line); padding-block: 32px 48px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
   footer a { color: var(--muted); }
-  .made { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; padding: 6px 14px 6px 6px; border: 1px solid var(--line); border-radius: 99px; background: var(--card); transition: border-color .15s, transform .15s; }
-  .made:hover { border-color: var(--accent); transform: translateY(-1px); }
-  .made img { width: 28px; height: 28px; border-radius: 8px; }
-  .made b { color: var(--ink); }
-  @media (max-width: 640px) { footer { flex-direction: column; align-items: center; text-align: center; } .made .tagline { display: none; } }
+  .yadnx-credit { display: inline-flex; align-items: center; flex-shrink: 0; min-height: 44px; padding: 5px 0; color: var(--muted); text-decoration: none; }
+  .yadnx-signature { position: relative; display: inline-flex; align-items: baseline; gap: 4px; padding-bottom: 5px; white-space: nowrap; }
+  .yadnx-prefix, .yadnx-suffix { font-family: Inter, system-ui, sans-serif; font-size: 10px; font-weight: 400; letter-spacing: .025em; }
+  .yadnx-word { font-family: Caveat, cursive; font-size: 25px; font-weight: 600; line-height: 1; letter-spacing: -.5px; }
+  .yadnx-stroke { position: absolute; bottom: 0; left: 0; width: 100%; height: 7px; opacity: .5; }
+  .yadnx-credit:hover { color: var(--accent); }
+  .yadnx-credit:hover .yadnx-stroke { opacity: 1; }
+  .yadnx-credit:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+  @media (max-width: 640px) { footer { flex-direction: column; align-items: center; text-align: center; } }
 
   /* ---------- book dialog ---------- */
   dialog { border: 0; padding: 0; background: var(--card); color: var(--ink); width: min(880px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); border-radius: 22px; box-shadow: 0 30px 80px rgb(0 0 0 / .35); overflow: hidden; }
@@ -243,19 +247,112 @@
     .info { overflow: visible; padding: 20px 20px calc(20px + env(safe-area-inset-bottom)); }
   }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+  /* Navigation and the story behind each contribution. */
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+  [id] { scroll-margin-top: 24px; }
+  .skip-link { position: fixed; top: -80px; left: 16px; z-index: 100; padding: 12px; background: var(--card); }
+  .skip-link:focus { top: 12px; }
+  .site-nav { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 22px; border-bottom: 1px solid var(--line); }
+  .wordmark { font-family: Fraunces, Georgia, serif; font-size: 23px; font-weight: 600; line-height: 1.25; }
+  .wordmark span { display: block; font: 13px/1.6 Inter, sans-serif; color: var(--muted); }
+  .site-nav a { color: var(--ink); text-decoration: none; }
+  .site-nav > div { display: flex; gap: 26px; font-size: 14px; }
+  .site-nav > div a { padding-block: 10px; }
+  .site-nav > div a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 5px; }
+  .eyebrow { text-transform: none; letter-spacing: 0; font-size: 16px; }
+  .cause-note { display: inline-block; margin-top: 22px; max-width: 38ch; color: var(--muted); font-size: 14px; text-underline-offset: 4px; }
+  .catalogue-heading { margin-top: 36px; margin-bottom: 0; }
+  .cause-panel { background: var(--card); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; }
+  .cause-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding: clamp(24px, 5vw, 48px); }
+  .cause-heading .hand { display: block; font-size: 28px; margin-bottom: 16px; }
+  .cause-heading h2 { font-size: clamp(34px, 4.5vw, 52px); max-width: 14ch; }
+  .cause-promise { color: var(--muted); max-width: 32ch; margin: 22px 0 0; }
+  .cause-promise strong { color: var(--accent); font-size: 24px; }
+  .cause-about { align-self: center; }
+  .cause-about h3 { font-size: 25px; }
+  .cause-about p { color: var(--muted); }
+  .cause-about a { text-underline-offset: 4px; }
+  .initiatives { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0 32px 32px; gap: 28px; }
+  .initiatives article { border-top: 2px solid var(--line); padding: 22px 8px 0; }
+  .initiative-symbol { display: block; color: var(--accent); font: 38px/1.2 Georgia, serif; margin-bottom: 18px; }
+  .initiatives h3 { font-size: 24px; }
+  .initiatives p { color: var(--muted); font-size: 15px; margin-bottom: 0; }
+  .initiatives .initiative-type { color: var(--ink); font-size: 14px; font-weight: 600; margin-top: 10px; }
+  .payment-note { padding: 24px clamp(24px, 5vw, 48px); background: var(--soft); }
+  .payment-note p { margin: 6px 0 0; max-width: 80ch; font-size: 15px; }
+  @media (max-width: 700px) {
+    .site-nav { gap: 16px; align-items: flex-start; }
+    .site-nav > div { gap: 14px; flex-wrap: wrap; justify-content: flex-end; }
+    .wordmark { flex-shrink: 0; font-size: 20px; }
+    .wordmark span { font-size: 12px; }
+    .cause-intro { grid-template-columns: 1fr; gap: 28px; }
+    .cause-heading h2 { max-width: 20ch; }
+    .initiatives { grid-template-columns: 1fr; padding: 0 24px 28px; gap: 24px; }
+    .initiatives article { padding-inline: 0; }
+    .initiative-symbol { float: right; margin: 0 0 12px 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  /* The catalogue is a bookcase: spines at rest, a cover when selected. */
+  #grid { display: block; padding: 0 0 28px; }
+  .shelf-instructions { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 20px; margin: 20px 0 8px; }
+  .shelf-instructions p { margin: 0; font-size: 14px; color: var(--muted); }
+  .touch-hint { display: none; }
+  .shelf-row { position: relative; display: flex; align-items: flex-end; gap: 12px; min-height: 390px; padding: 26px 28px 110px; margin-bottom: 24px; isolation: isolate; border-radius: 8px 8px 3px 3px; background: linear-gradient(180deg, rgb(105 65 32 / .04), rgb(105 65 32 / .13)); box-shadow: inset 0 6px 18px rgb(64 39 18 / .08); }
+  .shelf-row::after { content: ''; position: absolute; left: 0; right: 0; bottom: 98px; height: 15px; z-index: -1; border-radius: 2px 2px 4px 4px; background: repeating-linear-gradient(1deg, transparent 0 3px, rgb(67 36 12 / .08) 4px 5px), linear-gradient(#cda675, #a77949); border-top: 3px solid #e3c39b; box-shadow: 0 9px 14px rgb(54 29 10 / .18); }
+  .shelf-book { position: relative; flex: 1 1 0; min-width: 0; max-width: 92px; height: var(--book-height); transition: flex-basis .55s cubic-bezier(.22,.7,.2,1), max-width .55s cubic-bezier(.22,.7,.2,1); }
+  .shelf-book.revealed { flex: 0 0 218px; max-width: 218px; z-index: 2; }
+  .book-toggle { display: block; position: relative; width: 100%; height: 100%; border: 0; padding: 0; background: transparent; cursor: pointer; perspective: 1000px; text-align: left; border-radius: 4px; }
+  .book-object { display: block; position: absolute; inset: 0; transform-style: preserve-3d; }
+  .book-spine { display: flex; position: absolute; inset: 0; flex-direction: column; align-items: center; gap: 14px; padding: 16px 8px; border-radius: 4px 3px 2px 2px; color: #fff8e8; background: linear-gradient(90deg, rgb(0 0 0 / .2), transparent 18%, rgb(255 255 255 / .1) 35%, transparent 70%, rgb(0 0 0 / .3)), hsl(var(--book-hue) 33% 29%); box-shadow: 3px 2px 4px rgb(0 0 0 / .22), inset 2px 0 rgb(255 255 255 / .2); transform-origin: right center; backface-visibility: hidden; transition: transform .55s, opacity .3s; }
+  .spine-title { writing-mode: vertical-rl; font: 600 18px/1.1 Fraunces, Georgia, serif; max-height: calc(100% - 30px); overflow: hidden; text-overflow: ellipsis; }
+  .spine-author { display: none; }
+  .spine-mark { margin-top: auto; white-space: nowrap; font-size: 10px; letter-spacing: .05em; border-top: 1px solid rgb(255 255 255 / .4); padding-top: 8px; }
+  .book-front { display: block; position: absolute; inset: 0; transform-origin: left center; transform: rotateY(88deg); opacity: 0; backface-visibility: hidden; transition: transform .55s cubic-bezier(.22,.7,.2,1), opacity .25s; border-radius: 3px 6px 6px 3px; overflow: hidden; box-shadow: 6px 5px 0 -2px #e5dccb, 9px 8px 0 -4px #b5a48c, 14px 10px 18px rgb(0 0 0 / .2); }
+  .book-front .cover { width: 100%; height: 100%; aspect-ratio: auto; }
+  .book-front .cover img { object-fit: contain; background: var(--soft); }
+  .shelf-book.revealed .book-spine { transform: rotateY(-90deg); opacity: 0; }
+  .shelf-book.revealed .book-front { transform: rotateY(-8deg); opacity: 1; }
+  .book-caption { position: absolute; top: calc(100% + 24px); left: 0; width: 100%; opacity: 0; visibility: hidden; transition: opacity .2s .2s; }
+  .revealed .book-caption { opacity: 1; visibility: visible; }
+  .shelf-title { font-weight: 600; font-size: 14px; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .shelf-meta { font-size: 12px; color: var(--muted); margin: 2px 0; }
+  .book-details { display: block; min-height: 44px; padding: 6px 0; border: 0; background: transparent; color: var(--accent); font-size: 14px; font-weight: 600; text-align: left; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+  @media (hover: none) { .hover-hint { display: none; } .touch-hint { display: inline; } }
+  @media (max-width: 600px) {
+    .shelf-row { gap: 9px; padding-inline: 14px; min-height: 375px; }
+    .shelf-book { max-width: 76px; min-width: 44px; }
+    .shelf-book.revealed { flex-basis: min(180px, calc(100% - 106px)); max-width: min(180px, calc(100% - 106px)); }
+    .spine-title { font-size: 16px; }
+    .book-spine { padding-inline: 4px; }
+    .book-front .cover .t { font-size: 21px; }
+    .shelf-instructions { gap: 8px; }
+    .shelf-meta { font-size: 11px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .shelf-book, .book-spine, .book-front, .book-caption { transition: none; }
+    .shelf-book.revealed .book-front { transform: none; }
+  }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#catalogue">Skip to books</a>
+<nav class="wrap site-nav" aria-label="Main navigation">
+  <a class="wordmark" href="#top">Pass the Page<span>A shelf with a purpose</span></a>
+  <div><a href="#books">The books</a><a href="#cause">The cause</a><a href="#faq">Questions</a></div>
+</nav>
 
-<header class="wrap hero">
+<header class="wrap hero" id="top">
   <div>
-    <span class="eyebrow">📚 A New Year book giveaway</span>
+    <span class="eyebrow">From my bookshelf to yours</span>
     <h1>Pass the <em>Page</em></h1>
     <p class="lede">Books I've loved, now looking for new shelves. Pay anything from <strong>₹<span data-s="minPrice"></span> to ₹<span data-s="maxPrice"></span></strong>, and every single rupee goes to <strong data-s="ngoName"></strong>.</p>
     <div class="cta">
       <a class="btn" href="#books">Browse the shelf</a>
       <button class="btn ghost" id="surpriseTop">🎲 Surprise me</button>
     </div>
+    <a class="cause-note" href="#cause">A new chapter for a book. A little help against hunger.</a>
   </div>
   <div class="shelf" id="shelf" aria-hidden="true"></div>
 </header>
@@ -276,7 +373,7 @@
   <div class="steps">
     <div class="step"><h3>Pick a book</h3><p>Every listing tells you whether it's an original or a first copy, and exactly how worn it is. Real photos, no surprises (unless you want one).</p></div>
     <div class="step"><h3>Choose your price</h3><p>Slide anywhere from ₹<span data-s="minPrice"></span> to ₹<span data-s="maxPrice"></span>. Pay what the book is worth to you.</p></div>
-    <div class="step"><h3>Take it on WhatsApp</h3><p>Tap <b>Take it</b> and a message goes straight to <span data-s="owner"></span>. He'll sort payment to the NGO and pickup with you.</p></div>
+    <div class="step"><h3>Take it on WhatsApp</h3><p>Tap <b>Take it</b> to open a WhatsApp message to <span data-s="owner"></span>. Send it to arrange payment directly to him and pickup. He donates the full book payment to <span data-s="ngoName"></span>.</p></div>
   </div>
 </section>
 
@@ -301,8 +398,9 @@
   </div>
 </div>
 
-<main class="wrap">
-  <p class="count" id="count"></p>
+<main class="wrap" id="catalogue">
+  <div class="sec-head catalogue-heading"><div><h2>Find your next read</h2><p>A familiar favourite, a new discovery, or a little mystery.</p></div></div>
+  <div class="shelf-instructions"><p class="count" id="count" aria-live="polite"></p><p><span class="hover-hint">Hover over a spine to take a peek.</span><span class="touch-hint">Tap a spine to take a peek.</span> Select “View book” for details.</p></div>
   <div class="grid" id="grid"><p class="empty">Loading the shelf…</p></div>
   <div class="more"><button class="btn ghost" id="more" hidden>Show more books</button></div>
 </main>
@@ -312,14 +410,18 @@
   <div class="guide" id="guideGrid"></div>
 </section>
 
-<section class="wrap">
-  <div class="ngo-card">
-    <div class="big">100%</div>
-    <div>
-      <h2>Every rupee goes to <span data-s="ngoName"></span></h2>
-      <p data-s="ngoAbout"></p>
-      <p id="ngoLink"></p>
+<section class="wrap" id="cause" aria-labelledby="causeTitle">
+  <div class="cause-panel">
+    <div class="cause-intro">
+      <div class="cause-heading"><span class="hand">Good stories. Good food.</span><h2 id="causeTitle">Your next read can help feed Mumbai.</h2><p class="cause-promise"><strong>100%</strong> of your book payment goes to <span data-s="ngoName"></span>.</p></div>
+      <div class="cause-about"><h3>About <span data-s="ngoName"></span></h3><p data-s="ngoAbout"></p><p id="ngoLink"></p></div>
     </div>
+    <div class="initiatives" aria-label="Akshaya Chaitanya’s three feeding initiatives">
+      <article><span class="initiative-symbol" aria-hidden="true">♡</span><h3>Swasthya Ahara</h3><p class="initiative-type">Government hospital meals</p><p>Free, unlimited, nutritious lunches for patients’ families help them stay healthy and save money for medication.</p></article>
+      <article><span class="initiative-symbol" aria-hidden="true">☀</span><h3>Paushtik Ahara</h3><p class="initiative-type">Education &amp; nutrition</p><p>Free, unlimited, nutritious lunches combined with education help children in slum communities build a brighter future.</p></article>
+      <article><span class="initiative-symbol" aria-hidden="true">✎</span><h3>Bal Shiksha Ahara</h3><p class="initiative-type">Child education &amp; nutrition</p><p>Free, millet-based nutritious breakfasts help counter classroom hunger so children can focus on learning.</p></article>
+    </div>
+    <div class="payment-note"><strong>How your contribution reaches them</strong><p>You pay <span data-s="owner"></span> directly for your book. He collects the payment and donates the full amount to <span data-s="ngoName"></span>, keeping nothing from the book sale. Payment details and pickup are arranged on WhatsApp.</p></div>
   </div>
 </section>
 
@@ -334,7 +436,7 @@
 
 <section class="wrap" id="faq">
   <div class="sec-head"><div><h2>Questions</h2></div></div>
-  <details><summary>How do I pay?</summary><p>After you tap Take it, <span data-s="owner"></span> will reply on WhatsApp with the NGO's payment details. You pay the NGO directly, so the money never passes through anyone else.</p></details>
+  <details><summary>How do I pay?</summary><p>You pay <span data-s="owner"></span> directly for your book. Tap <b>Take it</b> and send the prepared WhatsApp message; he will reply with his payment details and arrange pickup with you. He then donates the full book payment to <span data-s="ngoName"></span>. He keeps nothing from the sale.</p></details>
   <details><summary>What's a "first copy"?</summary><p>A replica print, not from the original publisher. Same words, cheaper paper. Every listing clearly says whether a book is an original or a first copy.</p></details>
   <details><summary>What's a blind date book?</summary><p>A book wrapped up with only a few clues on it. You choose it by the hints, not the cover. The title is revealed when you pick it up.</p></details>
   <details><summary>How do I get the book?</summary><p>Pickup or hand-over is arranged with <span data-s="owner"></span> on WhatsApp once you've reserved it.</p></details>
@@ -343,9 +445,8 @@
 
 <footer class="wrap">
   <span>Pass the Page · Run by <span data-s="owner"></span> · <a id="waFoot" target="_blank" rel="noopener">WhatsApp</a> · <a id="igFoot" target="_blank" rel="noopener">Instagram</a></span>
-  <a class="made" href="https://yadnx.com/" target="_blank" rel="noopener" aria-label="Website by Yadnx Tech">
-    <img src="https://yadnx.com/brand/yadnx/apple-touch-icon.png" alt="" width="28" height="28" loading="lazy">
-    <span>Website by <b>Yadnx Tech</b><span class="tagline"> · Software, websites &amp; automation</span></span>
+  <a class="yadnx-credit" href="https://yadnx.com" target="_blank" rel="noopener noreferrer" aria-label="A Yadnx creation — website design by Yadnx Tech">
+    <span class="yadnx-signature"><span class="yadnx-prefix">a</span> <span class="yadnx-word">yadnx</span> <span class="yadnx-suffix">creation</span><svg class="yadnx-stroke" viewBox="0 0 120 8" fill="none" aria-hidden="true"><path d="M2 5C32 1 64 1 92 3s23 3 26 1" stroke="currentColor" stroke-width=".8" stroke-linecap="round"/></svg></span>
   </a>
 </footer>
 
@@ -389,19 +490,35 @@ const genCover = b => b.blind
 const shownTitle = b => b.blind ? "Blind date with a book" : b.title;
 
 function card(b) {
+  const title = shownTitle(b), color = hue(b.blind ? 'wrapped mystery' : b.title);
   const photo = !b.blind && b.photos?.[0];
-  const badge = b.status === "sold" ? `<span class="badge">Found a home</span>` : b.status === "reserved" ? `<span class="badge res">Reserved</span>` : "";
-  return `<button class="book${b.status === "sold" ? " sold" : ""}" data-id="${esc(b.id)}" aria-label="${esc(shownTitle(b))}">
-    ${photo ? `<div class="cover"><img src="${esc(photo)}" alt="" loading="lazy">${b.photos.length > 1 ? `<span class="badge photos">📷 ${b.photos.length}</span>` : ""}${badge}</div>`
-            : genCover(b).replace(/<\/div>$/, badge + "</div>")}
-    <div class="body">
-      ${photo || b.blind ? `<div><div class="ttl">${esc(shownTitle(b))}</div>${b.blind ? `<div class="au">${esc(b.genre || "Mystery")}</div>` : `<div class="au">${esc(b.author)}</div>`}</div>` : ""}
-      <div class="tags"><span class="tag ${ED[b.edition].cls}">${ED[b.edition].label}</span>${b.genre && !b.blind ? `<span class="tag">${esc(b.genre)}</span>` : ""}</div>
-      <div class="cond">${meter(b.condition)} ${COND[b.condition].label}</div>
-      ${b.mrp ? `<div class="mrp">MRP <s>₹${inr(b.mrp)}</s></div>` : ""}
-      <div class="price-hint">${b.status === "sold" ? `<span>Given for</span><b>₹${inr(b.soldFor)}</b>` : `<span><b>₹${S.minPrice}</b> to ₹${S.maxPrice}</span><span class="go">View →</span>`}</div>
+  const cover = photo ? `<div class="cover"><img src="${esc(photo)}" alt="" loading="lazy"></div>` : genCover(b);
+  const status = b.status === 'reserved' ? 'Reserved · Join the waitlist' : b.status === 'sold' ? 'Found a home' : ED[b.edition].label;
+  return `<article class="shelf-book" data-id="${esc(b.id)}" style="--book-hue:${color};--book-height:${220 + color % 35}px">
+    <button class="book-toggle" aria-expanded="false" aria-controls="preview-${esc(b.id)}" aria-label="Reveal ${esc(title)}">
+      <span class="book-object" aria-hidden="true">
+        <span class="book-spine"><span class="spine-title">${esc(title)}</span><span class="spine-author">${esc(b.blind ? 'A little mystery' : b.author)}</span><span class="spine-mark">${b.blind ? '?' : 'P / P'}</span></span>
+        <span class="book-front">${cover}</span>
+      </span>
+    </button>
+    <div class="book-caption" id="preview-${esc(b.id)}" inert>
+      <p class="shelf-title">${esc(title)}</p>
+      <p class="shelf-meta">${esc(status)} · ${COND[b.condition].label}</p>
+      <button class="book-details" tabindex="-1">${b.status === 'sold' ? `Raised ₹${inr(b.soldFor)} · View book` : `View book · ₹${S.minPrice}–₹${S.maxPrice}`}</button>
     </div>
-  </button>`;
+  </article>`;
+}
+
+function shelfSize() { return window.innerWidth <= 600 ? 3 : window.innerWidth <= 900 ? 5 : 8; }
+let currentShelfSize = shelfSize();
+function revealBook(book) {
+  document.querySelectorAll('.shelf-book').forEach(el => {
+    const active = el === book;
+    el.classList.toggle('revealed', active);
+    el.querySelector('.book-toggle').setAttribute('aria-expanded', String(active));
+    el.querySelector('.book-caption').inert = !active;
+    el.querySelector('.book-details').tabIndex = active ? 0 : -1;
+  });
 }
 
 function render() {
@@ -417,8 +534,9 @@ function render() {
   $("more").hidden = list.length <= shown;
   $("more").textContent = `Show more books (${list.length - shown} left)`;
   list = list.slice(0, shown);
-  $("grid").innerHTML = list.length ? list.map(card).join("") : `<p class="empty">Nothing matches that. Try loosening the filters, or hit 🎲 Surprise me.</p>`;
-  $("grid").querySelectorAll(".book").forEach((el, i) => el.style.animationDelay = Math.min((i % PAGE) * 30, 300) + "ms");
+  const rows = [];
+  for (let i = 0; i < list.length; i += currentShelfSize) rows.push(`<div class="shelf-row">${list.slice(i, i + currentShelfSize).map(card).join('')}</div>`);
+  $("grid").innerHTML = rows.length ? rows.join('') : `<p class="empty">No books match. Try another search or filter.</p>`;
 }
 
 /* ---------- book dialog ---------- */
@@ -449,7 +567,7 @@ function openBook(id, push = true) {
         <button class="btn ghost" id="share" aria-label="Share this book">Share</button>
       </div>
       <button class="btn wa" id="take"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.8-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.2.5.1.6 0l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.7-.1 1.3Z"/></svg><span id="takeTxt"></span></button>
-      <p class="fine">Opens WhatsApp with a message to ${esc(S.owner)}. Payment goes directly to ${esc(S.ngoName)}.</p>`;
+      <p class="fine">Opens WhatsApp with a message to ${esc(S.owner)}. You pay ${esc(S.owner)} directly; he donates the full book payment to ${esc(S.ngoName)}. He’ll share his payment details on WhatsApp.</p>`;
 
   $("info").innerHTML = `
     <h2 id="dTitle">${esc(shownTitle(b))}</h2>
@@ -498,12 +616,12 @@ function take() {
     "",
     b.blind ? `📦 *Blind date book* (clue: "${b.hint}")` : `📖 *${b.title}* by ${b.author}`,
     `🏷️ ${ED[b.edition].label} · ${COND[b.condition].label} condition${b.mrp ? ` · MRP ₹${b.mrp}` : ""}`,
-    `💰 I'm giving *₹${amt}* to ${S.ngoName}`,
+    `💰 I'd like to pay you *₹${amt}* for this book, supporting ${S.ngoName}.`,
     `🔖 Book ID: ${b.id}`,
     b.status === "reserved" ? "⏳ (It shows as reserved, please add me to the waitlist)" : "",
     "",
     who ? `My name is ${who}.` : "",
-    "How do I pay and pick it up?",
+    "Please share your payment details and let me know how to pick it up.",
   ].filter((l, i, a) => l !== "" || a[i - 1] !== "");
   window.open(`https://wa.me/${S.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`, "_blank", "noopener");
 }
@@ -545,7 +663,7 @@ fetch("books.json", { cache: "no-cache" }).then(r => r.json()).then(d => {
     const handle = "@" + S.instagram.replace(/\/+$/, "").split("?")[0].split("/").pop();
     $("cIg").href = $("igFoot").href = S.instagram; $("cIgTxt").textContent = handle;
   } else $("cIg").remove(), $("igFoot").remove();
-  if (S.ngoLink) $("ngoLink").innerHTML = `<a href="${esc(S.ngoLink)}" target="_blank" rel="noopener">Learn about the NGO →</a>`;
+  if (S.ngoLink) $("ngoLink").innerHTML = `<a href="${esc(S.ngoLink)}" target="_blank" rel="noopener">Visit ${esc(S.ngoName)}’s website</a>`;
 
   // impact
   const sold = BOOKS.filter(b => b.status === "sold"), raised = sold.reduce((t, b) => t + (+b.soldFor || 0), 0);
@@ -579,7 +697,26 @@ fetch("books.json", { cache: "no-cache" }).then(r => r.json()).then(d => {
   $("surprise").onclick = $("surpriseTop").onclick = surprise;
   ["q", "fCond", "fSort"].forEach(id => $(id).addEventListener("input", () => { shown = PAGE; render(); }));
   $("more").onclick = () => { shown += PAGE; render(); };
-  $("grid").onclick = e => { const c = e.target.closest(".book"); if (c) openBook(c.dataset.id); };
+  $("grid").onclick = e => {
+    const book = e.target.closest('.shelf-book'); if (!book) return;
+    if (e.target.closest('.book-details')) openBook(book.dataset.id);
+    else if (e.target.closest('.book-toggle')) revealBook(book);
+  };
+  $("grid").addEventListener('pointerover', e => {
+    if (e.pointerType !== 'mouse' || !matchMedia('(hover: hover)').matches) return;
+    const book = e.target.closest('.shelf-book');
+    if (book && !book.contains(e.relatedTarget)) revealBook(book);
+  });
+  $("grid").addEventListener('focusin', e => {
+    const book = e.target.closest('.shelf-book'); if (book) revealBook(book);
+  });
+  $("grid").addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.target.closest('.shelf-book')?.querySelector('.book-toggle').focus(); revealBook(null); }
+  });
+  document.addEventListener('pointerdown', e => { if (!e.target.closest('.shelf-book') && !dlg.open) revealBook(null); });
+  window.addEventListener('resize', () => {
+    const size = shelfSize(); if (size !== currentShelfSize) { currentShelfSize = size; render(); }
+  });
 
   render();
   const m = location.hash.match(/book=([^&]+)/);

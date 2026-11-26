@@ -1,6 +1,6 @@
 # Pass the Page
 
-A New Year book giveaway by Reyvan Sumbre. People pick a book, choose any price from ₹50 to ₹500 and tap **Take it**. That opens WhatsApp with a message to Reyvan saying which book they want and how much they're giving. All of the money goes to an NGO.
+A New Year book giveaway by Reyvan Sumbre. People pick a book, choose any price from ₹50 to ₹500 and tap **Take it**. That opens WhatsApp with a message to Reyvan saying which book they want and how much they're giving. Buyers pay Reyvan directly using payment details shared on WhatsApp. He donates the full book payment to Akshaya Chaitanya, an HKM Charitable Foundation initiative providing food relief in Mumbai.
 
 **Live site:** https://reyvansumbre200.github.io/Pass-the-page/
 

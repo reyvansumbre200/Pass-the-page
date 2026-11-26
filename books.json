@@ -2,9 +2,9 @@
   "site": {
     "owner": "Reyvan Sumbre",
     "whatsapp": "919167424492",
-    "ngoName": "YOUR NGO NAME",
-    "ngoAbout": "Every rupee you pay goes straight to the NGO. I keep nothing.",
-    "ngoLink": "",
+    "ngoName": "Akshaya Chaitanya",
+    "ngoAbout": "Akshaya Chaitanya is an initiative of the HKM Charitable Foundation working to eradicate hunger in Mumbai in a sustainable, scalable way. It provides food relief to marginalized communities, guided by good governance, integrity and a clear conscience.",
+    "ngoLink": "https://akshayachaitanya.org/about-trusted-ngo",
     "goal": 10000,
     "minPrice": 50,
     "maxPrice": 500,
