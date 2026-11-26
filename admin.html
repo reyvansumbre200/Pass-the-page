@@ -117,6 +117,7 @@
     <h1>Your shelf</h1>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
       <a class="btn ghost" href="./" target="_blank" style="text-decoration:none">View site ↗</a>
+      <button class="btn ghost" id="backupData" type="button">Download data backup</button>
       <button class="btn" id="addBook">+ Add book</button>
     </div>
   </header>
@@ -193,7 +194,7 @@ const store = { get: k => { try { return localStorage.getItem(k); } catch { retu
 const toast = (m, bad) => { const t = $("toast"); t.textContent = m; t.className = "toast show" + (bad ? " bad" : ""); clearTimeout(t._h); t._h = setTimeout(() => t.className = "toast", bad ? 5000 : 2200); };
 const show = v => ["vLogin", "vToken", "vApp"].forEach(id => $(id).classList.toggle("hidden", id !== v));
 
-let data, sha, dirty = false, editing = null, draftPhotos = [];
+let data, sha, dirty = false, editing = null, draftPhotos = [], editRevision = 0, publishing = false;
 const preview = new Map(); // freshly uploaded photo path -> local data URL (site takes ~1 min to serve new files)
 const src = p => preview.get(p) || p;
 
@@ -221,7 +222,7 @@ async function next() {
 async function gh(path, opts = {}) {
   const r = await fetch(API + path, { ...opts, headers: { Authorization: `Bearer ${store.get("ptp-token")}`, Accept: "application/vnd.github+json", "Content-Type": "application/json" } });
   const j = await r.json().catch(() => ({}));
-  if (!r.ok) throw new Error(r.status === 401 ? "GitHub key is invalid or expired" : r.status === 409 ? "Someone else saved in the meantime. Reload the page." : `${r.status} ${j.message || ""}`);
+  if (!r.ok) throw new Error(r.status === 401 ? "GitHub key is invalid or expired" : r.status === 409 ? "A newer version was saved elsewhere. Your changes are still here. Download a data backup before reloading and reapplying your edits." : `${r.status} ${j.message || ""}`);
   return j;
 }
 const b64 = str => { const bytes = new TextEncoder().encode(str); let s = ""; for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode(...bytes.subarray(i, i + 0x8000)); return btoa(s); };
@@ -233,18 +234,30 @@ async function load() {
   fillSite(); renderList();
 }
 async function publish() {
+  if (publishing) return;
   if (!$("fSite").reportValidity()) return;
   readSite();
+  const revision = editRevision;
+  publishing = true;
   $("pubBtn").disabled = true; $("pubBtn").textContent = "Publishing…";
   try {
     const r = await gh("books.json", { method: "PUT", body: JSON.stringify({ message: "Update books", content: b64(JSON.stringify(data, null, 2) + "\n"), sha, branch: BRANCH }) });
-    sha = r.content.sha; setDirty(false);
-    toast("Published ✓ Live in about a minute");
+    sha = r.content.sha; setDirty(editRevision !== revision);
+    toast(dirty ? "Published. Your newer edits still need publishing." : "Published ✓ Live in about a minute");
   } catch (err) { toast(err.message, true); }
+  publishing = false;
   $("pubBtn").disabled = false; $("pubBtn").textContent = "Publish to site";
 }
 $("pubBtn").onclick = publish;
-function setDirty(v = true) { dirty = v; $("publish").classList.toggle("show", v); }
+$("backupData").onclick = () => {
+  readSite();
+  const blob = new Blob([JSON.stringify(data, null, 2) + "\n"], {type:"application/json"});
+  const url = URL.createObjectURL(blob), link = document.createElement("a");
+  link.href = url; link.download = `pass-the-page-data-${new Date().toISOString().slice(0,10)}.json`;
+  document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 30000);
+  toast("Data backup downloaded. Photo files remain in GitHub.");
+};
+function setDirty(v = true) { if (v) editRevision++; dirty = v; $("publish").classList.toggle("show", v); }
 addEventListener("beforeunload", e => { if (dirty) e.preventDefault(); });
 
 /* ---------- photos: shrink on the phone, then upload straight to the repo ---------- */

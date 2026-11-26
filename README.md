@@ -37,3 +37,29 @@ Repo **Settings → Pages**: Source *Deploy from a branch*, branch `main`, folde
 - Sold books appear on the **Found new homes** shelf with the amount raised.
 - **Save share card** in a book's details downloads a PNG for WhatsApp or Instagram. **Share** sends the link to the book.
 - In admin **Site settings → Donation updates**, add completed transfers with their date, amount, optional note and public HTTPS receipt link. Publish normally. The public donation total comes only from these records; no transfer is inferred from a book sale. With no entries, the site says that no transfers have been recorded.
+
+## Saved data and safe releases
+
+Published data lives in GitHub: `books.json` holds books, settings and donation updates; `photos/` holds uploaded images. Deploying the static site does not create or reset a database. GitHub history retains previous committed versions. Unpublished edits are still browser-session drafts; publish them or download a backup before leaving.
+
+For website code changes, commit first, then run:
+
+```sh
+node scripts/safe-push.cjs
+```
+
+This fetches newer admin updates, creates and verifies a full Git bundle under `.git/data-backups/`, rebases the code, compares catalogue and photo blobs, and pushes normally. It refuses local catalogue/photo changes and stops on conflicts or network failures. A concurrent admin save rejects the push; rerun the command to synchronize. Do not force-push. The guard protects this release command; it cannot prevent someone bypassing it with other Git commands.
+
+The admin's **Download data backup** exports the current catalogue, settings, donation records, and photo paths without credentials. Actual image files remain in GitHub and the Git bundle. An outdated admin tab cannot overwrite a newer `books.json`: GitHub rejects its old file SHA. Download the draft before reloading on a conflict. Edits made while a save is in progress remain marked as unpublished.
+
+To inspect a release backup without changing the website:
+
+```sh
+mkdir /tmp/pass-the-page-recovery
+cd /tmp/pass-the-page-recovery
+git init
+git fetch /absolute/path/to/backup.bundle refs/remotes/origin/main:refs/heads/recovered
+git checkout recovered
+```
+
+Review recovery files before restoring anything. A code-only release does not overwrite saved data, but intentional deletions, force pushes, or uncommitted drafts cannot be promised permanent recovery. Keep downloaded backups outside the project too.
